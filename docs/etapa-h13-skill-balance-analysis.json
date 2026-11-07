@@ -1,0 +1,4247 @@
+{
+  "stage": "H.13",
+  "source": "synthetic-only",
+  "canonical_catalog_accessed": false,
+  "seed": 130,
+  "simulator_version": "1.0.0",
+  "rules_version": "h4-authoritative+h7-combat-rules",
+  "methodology": {
+    "engine": "H.4/H.7 authoritative resolvers through H.11 run_batch",
+    "storage": "SQLite :memory: isolated per batch",
+    "paired_control": "mesmo nível, atributos, equipamento (nenhum), HP/mana iniciais, alvo, composição, estratégia e seed; somente habilidade difere",
+    "randomness": "o motor não usa RNG; seed reproduz IDs, não cria observações independentes",
+    "classification_thresholds": {
+      "potentially_dominant": "provisório: pelo menos 5 contextos, 30 usos observados, redução mediana de turnos >=25%, benefício em >=80% dos contextos pareados e nenhum contexto pior",
+      "potentially_strong": "provisório: pelo menos 3 contextos, benefício em >=60% e nenhum contexto pior",
+      "potentially_weak": "provisório: pelo menos 3 contextos e 3 usos, benefício pareado inferior a 10% em >=60% dos casos e nenhum benefício >=10%",
+      "within_range": "provisório: pelo menos 3 contextos, resultados iguais e variações de dano e rodadas inferiores a 10% em todos",
+      "insufficient": "demais situações ou habilidade sem uso observado"
+    }
+  },
+  "metric_limitations": [
+    "O motor não modela acerto, erro, precisão, evasão ou críticos; taxa de acerto não se aplica.",
+    "Tentativas rejeitadas e motivos de inelegibilidade durante turnos posteriores não são persistidos nos eventos do simulador.",
+    "Dano contínuo é registrado como efeito do alvo sem atribuição confiável ao conjurador; não é creditado ao dano efetivo direto da habilidade.",
+    "Contribuição causal de vitória por habilidade não é uma métrica do motor; o contraste pareado de resultado/turnos é apenas evidência exploratória.",
+    "Alvos por uso contam alvos diretos de ação; alvos dos efeitos são informados separadamente.",
+    "A habilidade selecionada pode ser impedida por custo, cooldown, alcance, alvo inválido ou estratégia; só a insuficiência inicial de mana e elegibilidade do primeiro turno nos casos definidos são inferíveis."
+  ],
+  "skills": [
+    {
+      "skill": "Golpe calibrado",
+      "category": "physical",
+      "skill_type": "physical",
+      "effect_type": "dano direto",
+      "mana_cost": 4,
+      "classification": {
+        "classification": "potencialmente forte",
+        "confidence": "baixa; evidência exploratória sintética e determinística",
+        "sample_basis": {
+          "battle_contexts": 5,
+          "battles_per_context": 1,
+          "observed_uses": 17,
+          "independent_random_trials": 0
+        },
+        "median_paired_round_reduction_fraction": 0.4166666666666667,
+        "contexts_with_paired_benefit": 4,
+        "contexts_with_paired_disadvantage": 0,
+        "median_paired_damage_delta_fraction": 0.0,
+        "canonical_balance_conclusion": "não inferível de dados sintéticos"
+      },
+      "metrics": {
+        "uses": 17,
+        "raw_damage": 134,
+        "effective_direct_damage": 122,
+        "effective_damage_median_per_use": 7.0,
+        "effective_damage_mean_per_use": 7.176470588235294,
+        "damage_per_mana": 1.7941176470588236,
+        "effective_direct_damage_per_combat_turn": 1.0427350427350428,
+        "healing": 0,
+        "healing_mean_per_use": null,
+        "healing_per_mana": null,
+        "mana_cost": 68,
+        "mean_mana_cost_per_use": 4.0,
+        "effect_applications": 0,
+        "unique_targets_per_battle_total": 4,
+        "contexts": 5,
+        "hit_rate": null,
+        "failed_use_count": null,
+        "win_contribution": null,
+        "damage_over_time_attribution": "não aplicável"
+      },
+      "comparisons": [
+        {
+          "case_id": "Golpe calibrado:neutral",
+          "context_id": "neutral",
+          "context": "Alvo neutro",
+          "skill": "Golpe calibrado",
+          "category": "physical",
+          "skill_type": "physical",
+          "party_strategy": "effective_damage",
+          "mana_cost_per_use": 4,
+          "effect_type": null,
+          "control": {
+            "result": "turn_limit",
+            "rounds": 40,
+            "party_damage_effective": 40,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "comparison": {
+            "result": "victory",
+            "rounds": 30,
+            "party_damage_effective": 60,
+            "mana_consumed": 20,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "round_reduction_fraction": 0.25,
+          "party_damage_delta_fraction": 0.5,
+          "outcome_improved": true,
+          "paired_benefit": true,
+          "paired_disadvantage": false,
+          "party_survival_rate": 1.0,
+          "wounded_ally_hp_final": null,
+          "target_survived": false,
+          "skill_metrics": {
+            "uses": 5,
+            "raw_damage": 35,
+            "effective_damage": 35,
+            "healing": 0,
+            "mana_cost": 20,
+            "damage_per_use": 7.0,
+            "damage_per_mana": 1.75,
+            "healing_per_mana": null,
+            "unique_target_count": 1,
+            "effect_application_count": 0,
+            "unique_effect_target_count": 0,
+            "usage_samples": [
+              {
+                "round": 1,
+                "raw_damage": 7,
+                "effective_damage": 7,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 2,
+                "raw_damage": 7,
+                "effective_damage": 7,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 3,
+                "raw_damage": 7,
+                "effective_damage": 7,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 4,
+                "raw_damage": 7,
+                "effective_damage": 7,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 5,
+                "raw_damage": 7,
+                "effective_damage": 7,
+                "healing": 0,
+                "mana_cost": 4
+              }
+            ]
+          },
+          "skill_initially_eligible": true,
+          "unavailable_reasons": [
+            "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+          ],
+          "hit_rate": null,
+          "failed_use_count": null,
+          "win_contribution": null
+        },
+        {
+          "case_id": "Golpe calibrado:resistant",
+          "context_id": "resistant",
+          "context": "Resistência ao tipo da habilidade",
+          "skill": "Golpe calibrado",
+          "category": "physical",
+          "skill_type": "physical",
+          "party_strategy": "effective_damage",
+          "mana_cost_per_use": 4,
+          "effect_type": null,
+          "control": {
+            "result": "turn_limit",
+            "rounds": 40,
+            "party_damage_effective": 40,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "comparison": {
+            "result": "turn_limit",
+            "rounds": 40,
+            "party_damage_effective": 50,
+            "mana_consumed": 20,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "round_reduction_fraction": 0.0,
+          "party_damage_delta_fraction": 0.25,
+          "outcome_improved": false,
+          "paired_benefit": true,
+          "paired_disadvantage": false,
+          "party_survival_rate": 1.0,
+          "wounded_ally_hp_final": null,
+          "target_survived": true,
+          "skill_metrics": {
+            "uses": 5,
+            "raw_damage": 15,
+            "effective_damage": 15,
+            "healing": 0,
+            "mana_cost": 20,
+            "damage_per_use": 3.0,
+            "damage_per_mana": 0.75,
+            "healing_per_mana": null,
+            "unique_target_count": 1,
+            "effect_application_count": 0,
+            "unique_effect_target_count": 0,
+            "usage_samples": [
+              {
+                "round": 1,
+                "raw_damage": 3,
+                "effective_damage": 3,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 2,
+                "raw_damage": 3,
+                "effective_damage": 3,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 3,
+                "raw_damage": 3,
+                "effective_damage": 3,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 4,
+                "raw_damage": 3,
+                "effective_damage": 3,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 5,
+                "raw_damage": 3,
+                "effective_damage": 3,
+                "healing": 0,
+                "mana_cost": 4
+              }
+            ]
+          },
+          "skill_initially_eligible": true,
+          "unavailable_reasons": [
+            "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+          ],
+          "hit_rate": null,
+          "failed_use_count": null,
+          "win_contribution": null
+        },
+        {
+          "case_id": "Golpe calibrado:weak",
+          "context_id": "weak",
+          "context": "Fraqueza ao tipo da habilidade",
+          "skill": "Golpe calibrado",
+          "category": "physical",
+          "skill_type": "physical",
+          "party_strategy": "effective_damage",
+          "mana_cost_per_use": 4,
+          "effect_type": null,
+          "control": {
+            "result": "victory",
+            "rounds": 30,
+            "party_damage_effective": 60,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "comparison": {
+            "result": "victory",
+            "rounds": 5,
+            "party_damage_effective": 60,
+            "mana_consumed": 20,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "round_reduction_fraction": 0.8333333333333334,
+          "party_damage_delta_fraction": 0.0,
+          "outcome_improved": false,
+          "paired_benefit": true,
+          "paired_disadvantage": false,
+          "party_survival_rate": 1.0,
+          "wounded_ally_hp_final": null,
+          "target_survived": false,
+          "skill_metrics": {
+            "uses": 5,
+            "raw_damage": 70,
+            "effective_damage": 60,
+            "healing": 0,
+            "mana_cost": 20,
+            "damage_per_use": 12.0,
+            "damage_per_mana": 3.0,
+            "healing_per_mana": null,
+            "unique_target_count": 1,
+            "effect_application_count": 0,
+            "unique_effect_target_count": 0,
+            "usage_samples": [
+              {
+                "round": 1,
+                "raw_damage": 14,
+                "effective_damage": 14,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 2,
+                "raw_damage": 14,
+                "effective_damage": 14,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 3,
+                "raw_damage": 14,
+                "effective_damage": 14,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 4,
+                "raw_damage": 14,
+                "effective_damage": 14,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 5,
+                "raw_damage": 14,
+                "effective_damage": 4,
+                "healing": 0,
+                "mana_cost": 4
+              }
+            ]
+          },
+          "skill_initially_eligible": true,
+          "unavailable_reasons": [
+            "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+          ],
+          "hit_rate": null,
+          "failed_use_count": null,
+          "win_contribution": null
+        },
+        {
+          "case_id": "Golpe calibrado:high-defense",
+          "context_id": "high-defense",
+          "context": "Defesa e resistência mágica elevadas",
+          "skill": "Golpe calibrado",
+          "category": "physical",
+          "skill_type": "physical",
+          "party_strategy": "effective_damage",
+          "mana_cost_per_use": 4,
+          "effect_type": null,
+          "control": {
+            "result": "turn_limit",
+            "rounds": 40,
+            "party_damage_effective": 40,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "comparison": {
+            "result": "turn_limit",
+            "rounds": 40,
+            "party_damage_effective": 40,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "round_reduction_fraction": 0.0,
+          "party_damage_delta_fraction": 0.0,
+          "outcome_improved": false,
+          "paired_benefit": false,
+          "paired_disadvantage": false,
+          "party_survival_rate": 1.0,
+          "wounded_ally_hp_final": null,
+          "target_survived": true,
+          "skill_metrics": {
+            "uses": 0,
+            "raw_damage": 0,
+            "effective_damage": 0,
+            "healing": 0,
+            "mana_cost": 0,
+            "damage_per_use": null,
+            "damage_per_mana": null,
+            "healing_per_mana": null,
+            "unique_target_count": 0,
+            "effect_application_count": 0,
+            "unique_effect_target_count": 0,
+            "usage_samples": []
+          },
+          "skill_initially_eligible": true,
+          "unavailable_reasons": [
+            "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+          ],
+          "hit_rate": null,
+          "failed_use_count": null,
+          "win_contribution": null
+        },
+        {
+          "case_id": "Golpe calibrado:low-hp",
+          "context_id": "low-hp",
+          "context": "Alvo com pouco HP e risco de overkill",
+          "skill": "Golpe calibrado",
+          "category": "physical",
+          "skill_type": "physical",
+          "party_strategy": "effective_damage",
+          "mana_cost_per_use": 4,
+          "effect_type": null,
+          "control": {
+            "result": "victory",
+            "rounds": 12,
+            "party_damage_effective": 12,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "comparison": {
+            "result": "victory",
+            "rounds": 2,
+            "party_damage_effective": 12,
+            "mana_consumed": 8,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "round_reduction_fraction": 0.8333333333333334,
+          "party_damage_delta_fraction": 0.0,
+          "outcome_improved": false,
+          "paired_benefit": true,
+          "paired_disadvantage": false,
+          "party_survival_rate": 1.0,
+          "wounded_ally_hp_final": null,
+          "target_survived": false,
+          "skill_metrics": {
+            "uses": 2,
+            "raw_damage": 14,
+            "effective_damage": 12,
+            "healing": 0,
+            "mana_cost": 8,
+            "damage_per_use": 6.0,
+            "damage_per_mana": 1.5,
+            "healing_per_mana": null,
+            "unique_target_count": 1,
+            "effect_application_count": 0,
+            "unique_effect_target_count": 0,
+            "usage_samples": [
+              {
+                "round": 1,
+                "raw_damage": 7,
+                "effective_damage": 7,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 2,
+                "raw_damage": 7,
+                "effective_damage": 5,
+                "healing": 0,
+                "mana_cost": 4
+              }
+            ]
+          },
+          "skill_initially_eligible": true,
+          "unavailable_reasons": [
+            "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+          ],
+          "hit_rate": null,
+          "failed_use_count": null,
+          "win_contribution": null
+        }
+      ]
+    },
+    {
+      "skill": "Orbe arcano",
+      "category": "magic",
+      "skill_type": "arcane",
+      "effect_type": "dano direto",
+      "mana_cost": 4,
+      "classification": {
+        "classification": "potencialmente forte",
+        "confidence": "baixa; evidência exploratória sintética e determinística",
+        "sample_basis": {
+          "battle_contexts": 5,
+          "battles_per_context": 1,
+          "observed_uses": 14,
+          "independent_random_trials": 0
+        },
+        "median_paired_round_reduction_fraction": 0.4583333333333333,
+        "contexts_with_paired_benefit": 4,
+        "contexts_with_paired_disadvantage": 0,
+        "median_paired_damage_delta_fraction": 0.5,
+        "canonical_balance_conclusion": "não inferível de dados sintéticos"
+      },
+      "metrics": {
+        "uses": 14,
+        "raw_damage": 174,
+        "effective_direct_damage": 162,
+        "effective_damage_median_per_use": 12.0,
+        "effective_damage_mean_per_use": 11.571428571428571,
+        "damage_per_mana": 2.892857142857143,
+        "effective_direct_damage_per_combat_turn": 1.9285714285714286,
+        "healing": 0,
+        "healing_mean_per_use": null,
+        "healing_per_mana": null,
+        "mana_cost": 56,
+        "mean_mana_cost_per_use": 4.0,
+        "effect_applications": 0,
+        "unique_targets_per_battle_total": 4,
+        "contexts": 5,
+        "hit_rate": null,
+        "failed_use_count": null,
+        "win_contribution": null,
+        "damage_over_time_attribution": "não aplicável"
+      },
+      "comparisons": [
+        {
+          "case_id": "Orbe arcano:neutral",
+          "context_id": "neutral",
+          "context": "Alvo neutro",
+          "skill": "Orbe arcano",
+          "category": "magic",
+          "skill_type": "arcane",
+          "party_strategy": "effective_damage",
+          "mana_cost_per_use": 4,
+          "effect_type": null,
+          "control": {
+            "result": "turn_limit",
+            "rounds": 40,
+            "party_damage_effective": 40,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "comparison": {
+            "result": "victory",
+            "rounds": 5,
+            "party_damage_effective": 60,
+            "mana_consumed": 20,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "round_reduction_fraction": 0.875,
+          "party_damage_delta_fraction": 0.5,
+          "outcome_improved": true,
+          "paired_benefit": true,
+          "paired_disadvantage": false,
+          "party_survival_rate": 1.0,
+          "wounded_ally_hp_final": null,
+          "target_survived": false,
+          "skill_metrics": {
+            "uses": 5,
+            "raw_damage": 60,
+            "effective_damage": 60,
+            "healing": 0,
+            "mana_cost": 20,
+            "damage_per_use": 12.0,
+            "damage_per_mana": 3.0,
+            "healing_per_mana": null,
+            "unique_target_count": 1,
+            "effect_application_count": 0,
+            "unique_effect_target_count": 0,
+            "usage_samples": [
+              {
+                "round": 1,
+                "raw_damage": 12,
+                "effective_damage": 12,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 2,
+                "raw_damage": 12,
+                "effective_damage": 12,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 3,
+                "raw_damage": 12,
+                "effective_damage": 12,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 4,
+                "raw_damage": 12,
+                "effective_damage": 12,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 5,
+                "raw_damage": 12,
+                "effective_damage": 12,
+                "healing": 0,
+                "mana_cost": 4
+              }
+            ]
+          },
+          "skill_initially_eligible": true,
+          "unavailable_reasons": [
+            "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+          ],
+          "hit_rate": null,
+          "failed_use_count": null,
+          "win_contribution": null
+        },
+        {
+          "case_id": "Orbe arcano:resistant",
+          "context_id": "resistant",
+          "context": "Resistência ao tipo da habilidade",
+          "skill": "Orbe arcano",
+          "category": "magic",
+          "skill_type": "arcane",
+          "party_strategy": "effective_damage",
+          "mana_cost_per_use": 4,
+          "effect_type": null,
+          "control": {
+            "result": "turn_limit",
+            "rounds": 40,
+            "party_damage_effective": 40,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "comparison": {
+            "result": "victory",
+            "rounds": 35,
+            "party_damage_effective": 60,
+            "mana_consumed": 20,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "round_reduction_fraction": 0.125,
+          "party_damage_delta_fraction": 0.5,
+          "outcome_improved": true,
+          "paired_benefit": true,
+          "paired_disadvantage": false,
+          "party_survival_rate": 1.0,
+          "wounded_ally_hp_final": null,
+          "target_survived": false,
+          "skill_metrics": {
+            "uses": 5,
+            "raw_damage": 30,
+            "effective_damage": 30,
+            "healing": 0,
+            "mana_cost": 20,
+            "damage_per_use": 6.0,
+            "damage_per_mana": 1.5,
+            "healing_per_mana": null,
+            "unique_target_count": 1,
+            "effect_application_count": 0,
+            "unique_effect_target_count": 0,
+            "usage_samples": [
+              {
+                "round": 1,
+                "raw_damage": 6,
+                "effective_damage": 6,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 2,
+                "raw_damage": 6,
+                "effective_damage": 6,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 3,
+                "raw_damage": 6,
+                "effective_damage": 6,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 4,
+                "raw_damage": 6,
+                "effective_damage": 6,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 5,
+                "raw_damage": 6,
+                "effective_damage": 6,
+                "healing": 0,
+                "mana_cost": 4
+              }
+            ]
+          },
+          "skill_initially_eligible": true,
+          "unavailable_reasons": [
+            "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+          ],
+          "hit_rate": null,
+          "failed_use_count": null,
+          "win_contribution": null
+        },
+        {
+          "case_id": "Orbe arcano:weak",
+          "context_id": "weak",
+          "context": "Fraqueza ao tipo da habilidade",
+          "skill": "Orbe arcano",
+          "category": "magic",
+          "skill_type": "arcane",
+          "party_strategy": "effective_damage",
+          "mana_cost_per_use": 4,
+          "effect_type": null,
+          "control": {
+            "result": "turn_limit",
+            "rounds": 40,
+            "party_damage_effective": 40,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "comparison": {
+            "result": "victory",
+            "rounds": 3,
+            "party_damage_effective": 60,
+            "mana_consumed": 12,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "round_reduction_fraction": 0.925,
+          "party_damage_delta_fraction": 0.5,
+          "outcome_improved": true,
+          "paired_benefit": true,
+          "paired_disadvantage": false,
+          "party_survival_rate": 1.0,
+          "wounded_ally_hp_final": null,
+          "target_survived": false,
+          "skill_metrics": {
+            "uses": 3,
+            "raw_damage": 72,
+            "effective_damage": 60,
+            "healing": 0,
+            "mana_cost": 12,
+            "damage_per_use": 20.0,
+            "damage_per_mana": 5.0,
+            "healing_per_mana": null,
+            "unique_target_count": 1,
+            "effect_application_count": 0,
+            "unique_effect_target_count": 0,
+            "usage_samples": [
+              {
+                "round": 1,
+                "raw_damage": 24,
+                "effective_damage": 24,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 2,
+                "raw_damage": 24,
+                "effective_damage": 24,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 3,
+                "raw_damage": 24,
+                "effective_damage": 12,
+                "healing": 0,
+                "mana_cost": 4
+              }
+            ]
+          },
+          "skill_initially_eligible": true,
+          "unavailable_reasons": [
+            "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+          ],
+          "hit_rate": null,
+          "failed_use_count": null,
+          "win_contribution": null
+        },
+        {
+          "case_id": "Orbe arcano:high-defense",
+          "context_id": "high-defense",
+          "context": "Defesa e resistência mágica elevadas",
+          "skill": "Orbe arcano",
+          "category": "magic",
+          "skill_type": "arcane",
+          "party_strategy": "effective_damage",
+          "mana_cost_per_use": 4,
+          "effect_type": null,
+          "control": {
+            "result": "turn_limit",
+            "rounds": 40,
+            "party_damage_effective": 40,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "comparison": {
+            "result": "turn_limit",
+            "rounds": 40,
+            "party_damage_effective": 40,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "round_reduction_fraction": 0.0,
+          "party_damage_delta_fraction": 0.0,
+          "outcome_improved": false,
+          "paired_benefit": false,
+          "paired_disadvantage": false,
+          "party_survival_rate": 1.0,
+          "wounded_ally_hp_final": null,
+          "target_survived": true,
+          "skill_metrics": {
+            "uses": 0,
+            "raw_damage": 0,
+            "effective_damage": 0,
+            "healing": 0,
+            "mana_cost": 0,
+            "damage_per_use": null,
+            "damage_per_mana": null,
+            "healing_per_mana": null,
+            "unique_target_count": 0,
+            "effect_application_count": 0,
+            "unique_effect_target_count": 0,
+            "usage_samples": []
+          },
+          "skill_initially_eligible": true,
+          "unavailable_reasons": [
+            "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+          ],
+          "hit_rate": null,
+          "failed_use_count": null,
+          "win_contribution": null
+        },
+        {
+          "case_id": "Orbe arcano:low-hp",
+          "context_id": "low-hp",
+          "context": "Alvo com pouco HP e risco de overkill",
+          "skill": "Orbe arcano",
+          "category": "magic",
+          "skill_type": "arcane",
+          "party_strategy": "effective_damage",
+          "mana_cost_per_use": 4,
+          "effect_type": null,
+          "control": {
+            "result": "victory",
+            "rounds": 12,
+            "party_damage_effective": 12,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "comparison": {
+            "result": "victory",
+            "rounds": 1,
+            "party_damage_effective": 12,
+            "mana_consumed": 4,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "round_reduction_fraction": 0.9166666666666666,
+          "party_damage_delta_fraction": 0.0,
+          "outcome_improved": false,
+          "paired_benefit": true,
+          "paired_disadvantage": false,
+          "party_survival_rate": 1.0,
+          "wounded_ally_hp_final": null,
+          "target_survived": false,
+          "skill_metrics": {
+            "uses": 1,
+            "raw_damage": 12,
+            "effective_damage": 12,
+            "healing": 0,
+            "mana_cost": 4,
+            "damage_per_use": 12.0,
+            "damage_per_mana": 3.0,
+            "healing_per_mana": null,
+            "unique_target_count": 1,
+            "effect_application_count": 0,
+            "unique_effect_target_count": 0,
+            "usage_samples": [
+              {
+                "round": 1,
+                "raw_damage": 12,
+                "effective_damage": 12,
+                "healing": 0,
+                "mana_cost": 4
+              }
+            ]
+          },
+          "skill_initially_eligible": true,
+          "unavailable_reasons": [
+            "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+          ],
+          "hit_rate": null,
+          "failed_use_count": null,
+          "win_contribution": null
+        }
+      ]
+    },
+    {
+      "skill": "Chama controlada",
+      "category": "magic",
+      "skill_type": "fire",
+      "effect_type": "dano direto",
+      "mana_cost": 4,
+      "classification": {
+        "classification": "potencialmente forte",
+        "confidence": "baixa; evidência exploratória sintética e determinística",
+        "sample_basis": {
+          "battle_contexts": 5,
+          "battles_per_context": 1,
+          "observed_uses": 14,
+          "independent_random_trials": 0
+        },
+        "median_paired_round_reduction_fraction": 0.4583333333333333,
+        "contexts_with_paired_benefit": 4,
+        "contexts_with_paired_disadvantage": 0,
+        "median_paired_damage_delta_fraction": 0.5,
+        "canonical_balance_conclusion": "não inferível de dados sintéticos"
+      },
+      "metrics": {
+        "uses": 14,
+        "raw_damage": 174,
+        "effective_direct_damage": 162,
+        "effective_damage_median_per_use": 12.0,
+        "effective_damage_mean_per_use": 11.571428571428571,
+        "damage_per_mana": 2.892857142857143,
+        "effective_direct_damage_per_combat_turn": 1.9285714285714286,
+        "healing": 0,
+        "healing_mean_per_use": null,
+        "healing_per_mana": null,
+        "mana_cost": 56,
+        "mean_mana_cost_per_use": 4.0,
+        "effect_applications": 0,
+        "unique_targets_per_battle_total": 4,
+        "contexts": 5,
+        "hit_rate": null,
+        "failed_use_count": null,
+        "win_contribution": null,
+        "damage_over_time_attribution": "não aplicável"
+      },
+      "comparisons": [
+        {
+          "case_id": "Chama controlada:neutral",
+          "context_id": "neutral",
+          "context": "Alvo neutro",
+          "skill": "Chama controlada",
+          "category": "magic",
+          "skill_type": "fire",
+          "party_strategy": "effective_damage",
+          "mana_cost_per_use": 4,
+          "effect_type": null,
+          "control": {
+            "result": "turn_limit",
+            "rounds": 40,
+            "party_damage_effective": 40,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "comparison": {
+            "result": "victory",
+            "rounds": 5,
+            "party_damage_effective": 60,
+            "mana_consumed": 20,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "round_reduction_fraction": 0.875,
+          "party_damage_delta_fraction": 0.5,
+          "outcome_improved": true,
+          "paired_benefit": true,
+          "paired_disadvantage": false,
+          "party_survival_rate": 1.0,
+          "wounded_ally_hp_final": null,
+          "target_survived": false,
+          "skill_metrics": {
+            "uses": 5,
+            "raw_damage": 60,
+            "effective_damage": 60,
+            "healing": 0,
+            "mana_cost": 20,
+            "damage_per_use": 12.0,
+            "damage_per_mana": 3.0,
+            "healing_per_mana": null,
+            "unique_target_count": 1,
+            "effect_application_count": 0,
+            "unique_effect_target_count": 0,
+            "usage_samples": [
+              {
+                "round": 1,
+                "raw_damage": 12,
+                "effective_damage": 12,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 2,
+                "raw_damage": 12,
+                "effective_damage": 12,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 3,
+                "raw_damage": 12,
+                "effective_damage": 12,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 4,
+                "raw_damage": 12,
+                "effective_damage": 12,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 5,
+                "raw_damage": 12,
+                "effective_damage": 12,
+                "healing": 0,
+                "mana_cost": 4
+              }
+            ]
+          },
+          "skill_initially_eligible": true,
+          "unavailable_reasons": [
+            "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+          ],
+          "hit_rate": null,
+          "failed_use_count": null,
+          "win_contribution": null
+        },
+        {
+          "case_id": "Chama controlada:resistant",
+          "context_id": "resistant",
+          "context": "Resistência ao tipo da habilidade",
+          "skill": "Chama controlada",
+          "category": "magic",
+          "skill_type": "fire",
+          "party_strategy": "effective_damage",
+          "mana_cost_per_use": 4,
+          "effect_type": null,
+          "control": {
+            "result": "turn_limit",
+            "rounds": 40,
+            "party_damage_effective": 40,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "comparison": {
+            "result": "victory",
+            "rounds": 35,
+            "party_damage_effective": 60,
+            "mana_consumed": 20,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "round_reduction_fraction": 0.125,
+          "party_damage_delta_fraction": 0.5,
+          "outcome_improved": true,
+          "paired_benefit": true,
+          "paired_disadvantage": false,
+          "party_survival_rate": 1.0,
+          "wounded_ally_hp_final": null,
+          "target_survived": false,
+          "skill_metrics": {
+            "uses": 5,
+            "raw_damage": 30,
+            "effective_damage": 30,
+            "healing": 0,
+            "mana_cost": 20,
+            "damage_per_use": 6.0,
+            "damage_per_mana": 1.5,
+            "healing_per_mana": null,
+            "unique_target_count": 1,
+            "effect_application_count": 0,
+            "unique_effect_target_count": 0,
+            "usage_samples": [
+              {
+                "round": 1,
+                "raw_damage": 6,
+                "effective_damage": 6,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 2,
+                "raw_damage": 6,
+                "effective_damage": 6,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 3,
+                "raw_damage": 6,
+                "effective_damage": 6,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 4,
+                "raw_damage": 6,
+                "effective_damage": 6,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 5,
+                "raw_damage": 6,
+                "effective_damage": 6,
+                "healing": 0,
+                "mana_cost": 4
+              }
+            ]
+          },
+          "skill_initially_eligible": true,
+          "unavailable_reasons": [
+            "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+          ],
+          "hit_rate": null,
+          "failed_use_count": null,
+          "win_contribution": null
+        },
+        {
+          "case_id": "Chama controlada:weak",
+          "context_id": "weak",
+          "context": "Fraqueza ao tipo da habilidade",
+          "skill": "Chama controlada",
+          "category": "magic",
+          "skill_type": "fire",
+          "party_strategy": "effective_damage",
+          "mana_cost_per_use": 4,
+          "effect_type": null,
+          "control": {
+            "result": "turn_limit",
+            "rounds": 40,
+            "party_damage_effective": 40,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "comparison": {
+            "result": "victory",
+            "rounds": 3,
+            "party_damage_effective": 60,
+            "mana_consumed": 12,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "round_reduction_fraction": 0.925,
+          "party_damage_delta_fraction": 0.5,
+          "outcome_improved": true,
+          "paired_benefit": true,
+          "paired_disadvantage": false,
+          "party_survival_rate": 1.0,
+          "wounded_ally_hp_final": null,
+          "target_survived": false,
+          "skill_metrics": {
+            "uses": 3,
+            "raw_damage": 72,
+            "effective_damage": 60,
+            "healing": 0,
+            "mana_cost": 12,
+            "damage_per_use": 20.0,
+            "damage_per_mana": 5.0,
+            "healing_per_mana": null,
+            "unique_target_count": 1,
+            "effect_application_count": 0,
+            "unique_effect_target_count": 0,
+            "usage_samples": [
+              {
+                "round": 1,
+                "raw_damage": 24,
+                "effective_damage": 24,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 2,
+                "raw_damage": 24,
+                "effective_damage": 24,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 3,
+                "raw_damage": 24,
+                "effective_damage": 12,
+                "healing": 0,
+                "mana_cost": 4
+              }
+            ]
+          },
+          "skill_initially_eligible": true,
+          "unavailable_reasons": [
+            "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+          ],
+          "hit_rate": null,
+          "failed_use_count": null,
+          "win_contribution": null
+        },
+        {
+          "case_id": "Chama controlada:high-defense",
+          "context_id": "high-defense",
+          "context": "Defesa e resistência mágica elevadas",
+          "skill": "Chama controlada",
+          "category": "magic",
+          "skill_type": "fire",
+          "party_strategy": "effective_damage",
+          "mana_cost_per_use": 4,
+          "effect_type": null,
+          "control": {
+            "result": "turn_limit",
+            "rounds": 40,
+            "party_damage_effective": 40,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "comparison": {
+            "result": "turn_limit",
+            "rounds": 40,
+            "party_damage_effective": 40,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "round_reduction_fraction": 0.0,
+          "party_damage_delta_fraction": 0.0,
+          "outcome_improved": false,
+          "paired_benefit": false,
+          "paired_disadvantage": false,
+          "party_survival_rate": 1.0,
+          "wounded_ally_hp_final": null,
+          "target_survived": true,
+          "skill_metrics": {
+            "uses": 0,
+            "raw_damage": 0,
+            "effective_damage": 0,
+            "healing": 0,
+            "mana_cost": 0,
+            "damage_per_use": null,
+            "damage_per_mana": null,
+            "healing_per_mana": null,
+            "unique_target_count": 0,
+            "effect_application_count": 0,
+            "unique_effect_target_count": 0,
+            "usage_samples": []
+          },
+          "skill_initially_eligible": true,
+          "unavailable_reasons": [
+            "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+          ],
+          "hit_rate": null,
+          "failed_use_count": null,
+          "win_contribution": null
+        },
+        {
+          "case_id": "Chama controlada:low-hp",
+          "context_id": "low-hp",
+          "context": "Alvo com pouco HP e risco de overkill",
+          "skill": "Chama controlada",
+          "category": "magic",
+          "skill_type": "fire",
+          "party_strategy": "effective_damage",
+          "mana_cost_per_use": 4,
+          "effect_type": null,
+          "control": {
+            "result": "victory",
+            "rounds": 12,
+            "party_damage_effective": 12,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "comparison": {
+            "result": "victory",
+            "rounds": 1,
+            "party_damage_effective": 12,
+            "mana_consumed": 4,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "round_reduction_fraction": 0.9166666666666666,
+          "party_damage_delta_fraction": 0.0,
+          "outcome_improved": false,
+          "paired_benefit": true,
+          "paired_disadvantage": false,
+          "party_survival_rate": 1.0,
+          "wounded_ally_hp_final": null,
+          "target_survived": false,
+          "skill_metrics": {
+            "uses": 1,
+            "raw_damage": 12,
+            "effective_damage": 12,
+            "healing": 0,
+            "mana_cost": 4,
+            "damage_per_use": 12.0,
+            "damage_per_mana": 3.0,
+            "healing_per_mana": null,
+            "unique_target_count": 1,
+            "effect_application_count": 0,
+            "unique_effect_target_count": 0,
+            "usage_samples": [
+              {
+                "round": 1,
+                "raw_damage": 12,
+                "effective_damage": 12,
+                "healing": 0,
+                "mana_cost": 4
+              }
+            ]
+          },
+          "skill_initially_eligible": true,
+          "unavailable_reasons": [
+            "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+          ],
+          "hit_rate": null,
+          "failed_use_count": null,
+          "win_contribution": null
+        }
+      ]
+    },
+    {
+      "skill": "Veneno gradual",
+      "category": "special",
+      "skill_type": "poison",
+      "effect_type": "damage_over_time",
+      "mana_cost": 4,
+      "classification": {
+        "classification": "potencialmente forte",
+        "confidence": "baixa; evidência exploratória sintética e determinística",
+        "sample_basis": {
+          "battle_contexts": 5,
+          "battles_per_context": 1,
+          "observed_uses": 17,
+          "independent_random_trials": 0
+        },
+        "median_paired_round_reduction_fraction": 0.0,
+        "contexts_with_paired_benefit": 4,
+        "contexts_with_paired_disadvantage": 0,
+        "median_paired_damage_delta_fraction": 0.0,
+        "canonical_balance_conclusion": "não inferível de dados sintéticos"
+      },
+      "metrics": {
+        "uses": 17,
+        "raw_damage": 78,
+        "effective_direct_damage": 74,
+        "effective_damage_median_per_use": 4.0,
+        "effective_damage_mean_per_use": 4.352941176470588,
+        "damage_per_mana": 1.088235294117647,
+        "effective_direct_damage_per_combat_turn": 0.6491228070175439,
+        "healing": 0,
+        "healing_mean_per_use": null,
+        "healing_per_mana": null,
+        "mana_cost": 68,
+        "mean_mana_cost_per_use": 4.0,
+        "effect_applications": 10,
+        "unique_targets_per_battle_total": 4,
+        "contexts": 5,
+        "hit_rate": null,
+        "failed_use_count": null,
+        "win_contribution": null,
+        "damage_over_time_attribution": null
+      },
+      "comparisons": [
+        {
+          "case_id": "Veneno gradual:neutral",
+          "context_id": "neutral",
+          "context": "Alvo neutro",
+          "skill": "Veneno gradual",
+          "category": "special",
+          "skill_type": "poison",
+          "party_strategy": "effective_damage",
+          "mana_cost_per_use": 4,
+          "effect_type": "damage_over_time",
+          "control": {
+            "result": "turn_limit",
+            "rounds": 40,
+            "party_damage_effective": 40,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "comparison": {
+            "result": "victory",
+            "rounds": 27,
+            "party_damage_effective": 42,
+            "mana_consumed": 20,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "round_reduction_fraction": 0.325,
+          "party_damage_delta_fraction": 0.05,
+          "outcome_improved": true,
+          "paired_benefit": true,
+          "paired_disadvantage": false,
+          "party_survival_rate": 1.0,
+          "wounded_ally_hp_final": null,
+          "target_survived": false,
+          "skill_metrics": {
+            "uses": 5,
+            "raw_damage": 20,
+            "effective_damage": 20,
+            "healing": 0,
+            "mana_cost": 20,
+            "damage_per_use": 4.0,
+            "damage_per_mana": 1.0,
+            "healing_per_mana": null,
+            "unique_target_count": 1,
+            "effect_application_count": 3,
+            "unique_effect_target_count": 1,
+            "usage_samples": [
+              {
+                "round": 1,
+                "raw_damage": 4,
+                "effective_damage": 4,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 2,
+                "raw_damage": 4,
+                "effective_damage": 4,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 3,
+                "raw_damage": 4,
+                "effective_damage": 4,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 4,
+                "raw_damage": 4,
+                "effective_damage": 4,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 5,
+                "raw_damage": 4,
+                "effective_damage": 4,
+                "healing": 0,
+                "mana_cost": 4
+              }
+            ]
+          },
+          "skill_initially_eligible": true,
+          "unavailable_reasons": [
+            "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+          ],
+          "hit_rate": null,
+          "failed_use_count": null,
+          "win_contribution": null
+        },
+        {
+          "case_id": "Veneno gradual:resistant",
+          "context_id": "resistant",
+          "context": "Resistência ao tipo da habilidade",
+          "skill": "Veneno gradual",
+          "category": "special",
+          "skill_type": "poison",
+          "party_strategy": "effective_damage",
+          "mana_cost_per_use": 4,
+          "effect_type": "damage_over_time",
+          "control": {
+            "result": "turn_limit",
+            "rounds": 40,
+            "party_damage_effective": 40,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "comparison": {
+            "result": "turn_limit",
+            "rounds": 40,
+            "party_damage_effective": 45,
+            "mana_consumed": 20,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "round_reduction_fraction": 0.0,
+          "party_damage_delta_fraction": 0.125,
+          "outcome_improved": false,
+          "paired_benefit": true,
+          "paired_disadvantage": false,
+          "party_survival_rate": 1.0,
+          "wounded_ally_hp_final": null,
+          "target_survived": true,
+          "skill_metrics": {
+            "uses": 5,
+            "raw_damage": 10,
+            "effective_damage": 10,
+            "healing": 0,
+            "mana_cost": 20,
+            "damage_per_use": 2.0,
+            "damage_per_mana": 0.5,
+            "healing_per_mana": null,
+            "unique_target_count": 1,
+            "effect_application_count": 3,
+            "unique_effect_target_count": 1,
+            "usage_samples": [
+              {
+                "round": 1,
+                "raw_damage": 2,
+                "effective_damage": 2,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 2,
+                "raw_damage": 2,
+                "effective_damage": 2,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 3,
+                "raw_damage": 2,
+                "effective_damage": 2,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 4,
+                "raw_damage": 2,
+                "effective_damage": 2,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 5,
+                "raw_damage": 2,
+                "effective_damage": 2,
+                "healing": 0,
+                "mana_cost": 4
+              }
+            ]
+          },
+          "skill_initially_eligible": true,
+          "unavailable_reasons": [
+            "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+          ],
+          "hit_rate": null,
+          "failed_use_count": null,
+          "win_contribution": null
+        },
+        {
+          "case_id": "Veneno gradual:weak",
+          "context_id": "weak",
+          "context": "Fraqueza ao tipo da habilidade",
+          "skill": "Veneno gradual",
+          "category": "special",
+          "skill_type": "poison",
+          "party_strategy": "effective_damage",
+          "mana_cost_per_use": 4,
+          "effect_type": "damage_over_time",
+          "control": {
+            "result": "turn_limit",
+            "rounds": 40,
+            "party_damage_effective": 40,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "comparison": {
+            "result": "victory",
+            "rounds": 5,
+            "party_damage_effective": 36,
+            "mana_consumed": 20,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "round_reduction_fraction": 0.875,
+          "party_damage_delta_fraction": -0.1,
+          "outcome_improved": true,
+          "paired_benefit": true,
+          "paired_disadvantage": false,
+          "party_survival_rate": 1.0,
+          "wounded_ally_hp_final": null,
+          "target_survived": false,
+          "skill_metrics": {
+            "uses": 5,
+            "raw_damage": 40,
+            "effective_damage": 36,
+            "healing": 0,
+            "mana_cost": 20,
+            "damage_per_use": 7.2,
+            "damage_per_mana": 1.8,
+            "healing_per_mana": null,
+            "unique_target_count": 1,
+            "effect_application_count": 3,
+            "unique_effect_target_count": 1,
+            "usage_samples": [
+              {
+                "round": 1,
+                "raw_damage": 8,
+                "effective_damage": 8,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 2,
+                "raw_damage": 8,
+                "effective_damage": 8,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 3,
+                "raw_damage": 8,
+                "effective_damage": 8,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 4,
+                "raw_damage": 8,
+                "effective_damage": 8,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 5,
+                "raw_damage": 8,
+                "effective_damage": 4,
+                "healing": 0,
+                "mana_cost": 4
+              }
+            ]
+          },
+          "skill_initially_eligible": true,
+          "unavailable_reasons": [
+            "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+          ],
+          "hit_rate": null,
+          "failed_use_count": null,
+          "win_contribution": null
+        },
+        {
+          "case_id": "Veneno gradual:high-defense",
+          "context_id": "high-defense",
+          "context": "Defesa e resistência mágica elevadas",
+          "skill": "Veneno gradual",
+          "category": "special",
+          "skill_type": "poison",
+          "party_strategy": "effective_damage",
+          "mana_cost_per_use": 4,
+          "effect_type": "damage_over_time",
+          "control": {
+            "result": "turn_limit",
+            "rounds": 40,
+            "party_damage_effective": 40,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "comparison": {
+            "result": "turn_limit",
+            "rounds": 40,
+            "party_damage_effective": 40,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "round_reduction_fraction": 0.0,
+          "party_damage_delta_fraction": 0.0,
+          "outcome_improved": false,
+          "paired_benefit": false,
+          "paired_disadvantage": false,
+          "party_survival_rate": 1.0,
+          "wounded_ally_hp_final": null,
+          "target_survived": true,
+          "skill_metrics": {
+            "uses": 0,
+            "raw_damage": 0,
+            "effective_damage": 0,
+            "healing": 0,
+            "mana_cost": 0,
+            "damage_per_use": null,
+            "damage_per_mana": null,
+            "healing_per_mana": null,
+            "unique_target_count": 0,
+            "effect_application_count": 0,
+            "unique_effect_target_count": 0,
+            "usage_samples": []
+          },
+          "skill_initially_eligible": true,
+          "unavailable_reasons": [
+            "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+          ],
+          "hit_rate": null,
+          "failed_use_count": null,
+          "win_contribution": null
+        },
+        {
+          "case_id": "Veneno gradual:low-hp",
+          "context_id": "low-hp",
+          "context": "Alvo com pouco HP e risco de overkill",
+          "skill": "Veneno gradual",
+          "category": "special",
+          "skill_type": "poison",
+          "party_strategy": "effective_damage",
+          "mana_cost_per_use": 4,
+          "effect_type": "damage_over_time",
+          "control": {
+            "result": "victory",
+            "rounds": 12,
+            "party_damage_effective": 12,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "comparison": {
+            "result": "victory",
+            "rounds": 2,
+            "party_damage_effective": 8,
+            "mana_consumed": 8,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "round_reduction_fraction": 0.8333333333333334,
+          "party_damage_delta_fraction": -0.3333333333333333,
+          "outcome_improved": false,
+          "paired_benefit": true,
+          "paired_disadvantage": false,
+          "party_survival_rate": 1.0,
+          "wounded_ally_hp_final": null,
+          "target_survived": false,
+          "skill_metrics": {
+            "uses": 2,
+            "raw_damage": 8,
+            "effective_damage": 8,
+            "healing": 0,
+            "mana_cost": 8,
+            "damage_per_use": 4.0,
+            "damage_per_mana": 1.0,
+            "healing_per_mana": null,
+            "unique_target_count": 1,
+            "effect_application_count": 1,
+            "unique_effect_target_count": 1,
+            "usage_samples": [
+              {
+                "round": 1,
+                "raw_damage": 4,
+                "effective_damage": 4,
+                "healing": 0,
+                "mana_cost": 4
+              },
+              {
+                "round": 2,
+                "raw_damage": 4,
+                "effective_damage": 4,
+                "healing": 0,
+                "mana_cost": 4
+              }
+            ]
+          },
+          "skill_initially_eligible": true,
+          "unavailable_reasons": [
+            "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+          ],
+          "hit_rate": null,
+          "failed_use_count": null,
+          "win_contribution": null
+        }
+      ]
+    },
+    {
+      "skill": "Restauração sintética",
+      "category": "healing",
+      "skill_type": "heal",
+      "effect_type": "healing",
+      "mana_cost": 4,
+      "classification": {
+        "classification": "dados insuficientes",
+        "confidence": "baixa; evidência exploratória sintética e determinística",
+        "sample_basis": {
+          "battle_contexts": 1,
+          "battles_per_context": 1,
+          "observed_uses": 3,
+          "independent_random_trials": 0
+        },
+        "median_paired_round_reduction_fraction": null,
+        "contexts_with_paired_benefit": 1,
+        "contexts_with_paired_disadvantage": 0,
+        "median_paired_damage_delta_fraction": 0.2,
+        "canonical_balance_conclusion": "não inferível de dados sintéticos"
+      },
+      "metrics": {
+        "uses": 3,
+        "raw_damage": 0,
+        "effective_direct_damage": 0,
+        "effective_damage_median_per_use": null,
+        "effective_damage_mean_per_use": null,
+        "damage_per_mana": null,
+        "effective_direct_damage_per_combat_turn": null,
+        "healing": 60,
+        "healing_mean_per_use": 20.0,
+        "healing_per_mana": 5.0,
+        "mana_cost": 12,
+        "mean_mana_cost_per_use": 4.0,
+        "effect_applications": 0,
+        "unique_targets_per_battle_total": 2,
+        "contexts": 1,
+        "hit_rate": null,
+        "failed_use_count": null,
+        "win_contribution": null,
+        "damage_over_time_attribution": "não aplicável"
+      },
+      "comparisons": [
+        {
+          "case_id": "Restauração sintética:wounded-ally",
+          "context_id": "wounded-ally",
+          "context": "Aliado começa com 25% de HP",
+          "skill": "Restauração sintética",
+          "category": "healing",
+          "skill_type": "heal",
+          "party_strategy": "survival",
+          "mana_cost_per_use": 4,
+          "effect_type": null,
+          "control": {
+            "result": "defeat",
+            "rounds": 18,
+            "party_damage_effective": 60,
+            "mana_consumed": 0,
+            "party_survival_rate": 0.0,
+            "wounded_ally_hp_final": 0
+          },
+          "comparison": {
+            "result": "turn_limit",
+            "rounds": 14,
+            "party_damage_effective": 72,
+            "mana_consumed": 12,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": 30
+          },
+          "round_reduction_fraction": 0.2222222222222222,
+          "party_damage_delta_fraction": 0.2,
+          "outcome_improved": true,
+          "paired_benefit": true,
+          "paired_disadvantage": false,
+          "party_survival_rate": 1.0,
+          "wounded_ally_hp_final": 30,
+          "target_survived": true,
+          "skill_metrics": {
+            "uses": 3,
+            "raw_damage": 0,
+            "effective_damage": 0,
+            "healing": 60,
+            "mana_cost": 12,
+            "damage_per_use": 0.0,
+            "damage_per_mana": null,
+            "healing_per_mana": 5.0,
+            "unique_target_count": 2,
+            "effect_application_count": 0,
+            "unique_effect_target_count": 0,
+            "usage_samples": [
+              {
+                "round": 1,
+                "raw_damage": 0,
+                "effective_damage": 0,
+                "healing": 20,
+                "mana_cost": 4
+              },
+              {
+                "round": 9,
+                "raw_damage": 0,
+                "effective_damage": 0,
+                "healing": 20,
+                "mana_cost": 4
+              },
+              {
+                "round": 13,
+                "raw_damage": 0,
+                "effective_damage": 0,
+                "healing": 20,
+                "mana_cost": 4
+              }
+            ]
+          },
+          "skill_initially_eligible": true,
+          "unavailable_reasons": [
+            "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+          ],
+          "hit_rate": null,
+          "failed_use_count": null,
+          "win_contribution": null
+        }
+      ]
+    },
+    {
+      "skill": "Técnica de mana restrita",
+      "category": "magic",
+      "skill_type": "arcane",
+      "effect_type": "dano direto",
+      "mana_cost": 24,
+      "classification": {
+        "classification": "dados insuficientes",
+        "confidence": "baixa; evidência exploratória sintética e determinística",
+        "sample_basis": {
+          "battle_contexts": 5,
+          "battles_per_context": 1,
+          "observed_uses": 0,
+          "independent_random_trials": 0
+        },
+        "median_paired_round_reduction_fraction": 0.0,
+        "contexts_with_paired_benefit": 0,
+        "contexts_with_paired_disadvantage": 0,
+        "median_paired_damage_delta_fraction": 0.0,
+        "canonical_balance_conclusion": "não inferível de dados sintéticos"
+      },
+      "metrics": {
+        "uses": 0,
+        "raw_damage": 0,
+        "effective_direct_damage": 0,
+        "effective_damage_median_per_use": null,
+        "effective_damage_mean_per_use": null,
+        "damage_per_mana": null,
+        "effective_direct_damage_per_combat_turn": 0.0,
+        "healing": 0,
+        "healing_mean_per_use": null,
+        "healing_per_mana": null,
+        "mana_cost": 0,
+        "mean_mana_cost_per_use": null,
+        "effect_applications": 0,
+        "unique_targets_per_battle_total": 0,
+        "contexts": 5,
+        "hit_rate": null,
+        "failed_use_count": null,
+        "win_contribution": null,
+        "damage_over_time_attribution": "não aplicável"
+      },
+      "comparisons": [
+        {
+          "case_id": "Técnica de mana restrita:neutral",
+          "context_id": "neutral",
+          "context": "Alvo neutro",
+          "skill": "Técnica de mana restrita",
+          "category": "magic",
+          "skill_type": "arcane",
+          "party_strategy": "effective_damage",
+          "mana_cost_per_use": 24,
+          "effect_type": null,
+          "control": {
+            "result": "turn_limit",
+            "rounds": 40,
+            "party_damage_effective": 40,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "comparison": {
+            "result": "turn_limit",
+            "rounds": 40,
+            "party_damage_effective": 40,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "round_reduction_fraction": 0.0,
+          "party_damage_delta_fraction": 0.0,
+          "outcome_improved": false,
+          "paired_benefit": false,
+          "paired_disadvantage": false,
+          "party_survival_rate": 1.0,
+          "wounded_ally_hp_final": null,
+          "target_survived": true,
+          "skill_metrics": {
+            "uses": 0,
+            "raw_damage": 0,
+            "effective_damage": 0,
+            "healing": 0,
+            "mana_cost": 0,
+            "damage_per_use": null,
+            "damage_per_mana": null,
+            "healing_per_mana": null,
+            "unique_target_count": 0,
+            "effect_application_count": 0,
+            "unique_effect_target_count": 0,
+            "usage_samples": []
+          },
+          "skill_initially_eligible": false,
+          "unavailable_reasons": [
+            "mana insuficiente no início"
+          ],
+          "hit_rate": null,
+          "failed_use_count": null,
+          "win_contribution": null
+        },
+        {
+          "case_id": "Técnica de mana restrita:resistant",
+          "context_id": "resistant",
+          "context": "Resistência ao tipo da habilidade",
+          "skill": "Técnica de mana restrita",
+          "category": "magic",
+          "skill_type": "arcane",
+          "party_strategy": "effective_damage",
+          "mana_cost_per_use": 24,
+          "effect_type": null,
+          "control": {
+            "result": "turn_limit",
+            "rounds": 40,
+            "party_damage_effective": 40,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "comparison": {
+            "result": "turn_limit",
+            "rounds": 40,
+            "party_damage_effective": 40,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "round_reduction_fraction": 0.0,
+          "party_damage_delta_fraction": 0.0,
+          "outcome_improved": false,
+          "paired_benefit": false,
+          "paired_disadvantage": false,
+          "party_survival_rate": 1.0,
+          "wounded_ally_hp_final": null,
+          "target_survived": true,
+          "skill_metrics": {
+            "uses": 0,
+            "raw_damage": 0,
+            "effective_damage": 0,
+            "healing": 0,
+            "mana_cost": 0,
+            "damage_per_use": null,
+            "damage_per_mana": null,
+            "healing_per_mana": null,
+            "unique_target_count": 0,
+            "effect_application_count": 0,
+            "unique_effect_target_count": 0,
+            "usage_samples": []
+          },
+          "skill_initially_eligible": false,
+          "unavailable_reasons": [
+            "mana insuficiente no início"
+          ],
+          "hit_rate": null,
+          "failed_use_count": null,
+          "win_contribution": null
+        },
+        {
+          "case_id": "Técnica de mana restrita:weak",
+          "context_id": "weak",
+          "context": "Fraqueza ao tipo da habilidade",
+          "skill": "Técnica de mana restrita",
+          "category": "magic",
+          "skill_type": "arcane",
+          "party_strategy": "effective_damage",
+          "mana_cost_per_use": 24,
+          "effect_type": null,
+          "control": {
+            "result": "turn_limit",
+            "rounds": 40,
+            "party_damage_effective": 40,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "comparison": {
+            "result": "turn_limit",
+            "rounds": 40,
+            "party_damage_effective": 40,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "round_reduction_fraction": 0.0,
+          "party_damage_delta_fraction": 0.0,
+          "outcome_improved": false,
+          "paired_benefit": false,
+          "paired_disadvantage": false,
+          "party_survival_rate": 1.0,
+          "wounded_ally_hp_final": null,
+          "target_survived": true,
+          "skill_metrics": {
+            "uses": 0,
+            "raw_damage": 0,
+            "effective_damage": 0,
+            "healing": 0,
+            "mana_cost": 0,
+            "damage_per_use": null,
+            "damage_per_mana": null,
+            "healing_per_mana": null,
+            "unique_target_count": 0,
+            "effect_application_count": 0,
+            "unique_effect_target_count": 0,
+            "usage_samples": []
+          },
+          "skill_initially_eligible": false,
+          "unavailable_reasons": [
+            "mana insuficiente no início"
+          ],
+          "hit_rate": null,
+          "failed_use_count": null,
+          "win_contribution": null
+        },
+        {
+          "case_id": "Técnica de mana restrita:high-defense",
+          "context_id": "high-defense",
+          "context": "Defesa e resistência mágica elevadas",
+          "skill": "Técnica de mana restrita",
+          "category": "magic",
+          "skill_type": "arcane",
+          "party_strategy": "effective_damage",
+          "mana_cost_per_use": 24,
+          "effect_type": null,
+          "control": {
+            "result": "turn_limit",
+            "rounds": 40,
+            "party_damage_effective": 40,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "comparison": {
+            "result": "turn_limit",
+            "rounds": 40,
+            "party_damage_effective": 40,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "round_reduction_fraction": 0.0,
+          "party_damage_delta_fraction": 0.0,
+          "outcome_improved": false,
+          "paired_benefit": false,
+          "paired_disadvantage": false,
+          "party_survival_rate": 1.0,
+          "wounded_ally_hp_final": null,
+          "target_survived": true,
+          "skill_metrics": {
+            "uses": 0,
+            "raw_damage": 0,
+            "effective_damage": 0,
+            "healing": 0,
+            "mana_cost": 0,
+            "damage_per_use": null,
+            "damage_per_mana": null,
+            "healing_per_mana": null,
+            "unique_target_count": 0,
+            "effect_application_count": 0,
+            "unique_effect_target_count": 0,
+            "usage_samples": []
+          },
+          "skill_initially_eligible": false,
+          "unavailable_reasons": [
+            "mana insuficiente no início"
+          ],
+          "hit_rate": null,
+          "failed_use_count": null,
+          "win_contribution": null
+        },
+        {
+          "case_id": "Técnica de mana restrita:low-hp",
+          "context_id": "low-hp",
+          "context": "Alvo com pouco HP e risco de overkill",
+          "skill": "Técnica de mana restrita",
+          "category": "magic",
+          "skill_type": "arcane",
+          "party_strategy": "effective_damage",
+          "mana_cost_per_use": 24,
+          "effect_type": null,
+          "control": {
+            "result": "victory",
+            "rounds": 12,
+            "party_damage_effective": 12,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "comparison": {
+            "result": "victory",
+            "rounds": 12,
+            "party_damage_effective": 12,
+            "mana_consumed": 0,
+            "party_survival_rate": 1.0,
+            "wounded_ally_hp_final": null
+          },
+          "round_reduction_fraction": 0.0,
+          "party_damage_delta_fraction": 0.0,
+          "outcome_improved": false,
+          "paired_benefit": false,
+          "paired_disadvantage": false,
+          "party_survival_rate": 1.0,
+          "wounded_ally_hp_final": null,
+          "target_survived": false,
+          "skill_metrics": {
+            "uses": 0,
+            "raw_damage": 0,
+            "effective_damage": 0,
+            "healing": 0,
+            "mana_cost": 0,
+            "damage_per_use": null,
+            "damage_per_mana": null,
+            "healing_per_mana": null,
+            "unique_target_count": 0,
+            "effect_application_count": 0,
+            "unique_effect_target_count": 0,
+            "usage_samples": []
+          },
+          "skill_initially_eligible": false,
+          "unavailable_reasons": [
+            "mana insuficiente no início"
+          ],
+          "hit_rate": null,
+          "failed_use_count": null,
+          "win_contribution": null
+        }
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "case_id": "Golpe calibrado:neutral",
+      "context_id": "neutral",
+      "context": "Alvo neutro",
+      "skill": "Golpe calibrado",
+      "category": "physical",
+      "skill_type": "physical",
+      "party_strategy": "effective_damage",
+      "mana_cost_per_use": 4,
+      "effect_type": null,
+      "control": {
+        "result": "turn_limit",
+        "rounds": 40,
+        "party_damage_effective": 40,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "comparison": {
+        "result": "victory",
+        "rounds": 30,
+        "party_damage_effective": 60,
+        "mana_consumed": 20,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "round_reduction_fraction": 0.25,
+      "party_damage_delta_fraction": 0.5,
+      "outcome_improved": true,
+      "paired_benefit": true,
+      "paired_disadvantage": false,
+      "party_survival_rate": 1.0,
+      "wounded_ally_hp_final": null,
+      "target_survived": false,
+      "skill_metrics": {
+        "uses": 5,
+        "raw_damage": 35,
+        "effective_damage": 35,
+        "healing": 0,
+        "mana_cost": 20,
+        "damage_per_use": 7.0,
+        "damage_per_mana": 1.75,
+        "healing_per_mana": null,
+        "unique_target_count": 1,
+        "effect_application_count": 0,
+        "unique_effect_target_count": 0,
+        "usage_samples": [
+          {
+            "round": 1,
+            "raw_damage": 7,
+            "effective_damage": 7,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 2,
+            "raw_damage": 7,
+            "effective_damage": 7,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 3,
+            "raw_damage": 7,
+            "effective_damage": 7,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 4,
+            "raw_damage": 7,
+            "effective_damage": 7,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 5,
+            "raw_damage": 7,
+            "effective_damage": 7,
+            "healing": 0,
+            "mana_cost": 4
+          }
+        ]
+      },
+      "skill_initially_eligible": true,
+      "unavailable_reasons": [
+        "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+      ],
+      "hit_rate": null,
+      "failed_use_count": null,
+      "win_contribution": null
+    },
+    {
+      "case_id": "Golpe calibrado:resistant",
+      "context_id": "resistant",
+      "context": "Resistência ao tipo da habilidade",
+      "skill": "Golpe calibrado",
+      "category": "physical",
+      "skill_type": "physical",
+      "party_strategy": "effective_damage",
+      "mana_cost_per_use": 4,
+      "effect_type": null,
+      "control": {
+        "result": "turn_limit",
+        "rounds": 40,
+        "party_damage_effective": 40,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "comparison": {
+        "result": "turn_limit",
+        "rounds": 40,
+        "party_damage_effective": 50,
+        "mana_consumed": 20,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "round_reduction_fraction": 0.0,
+      "party_damage_delta_fraction": 0.25,
+      "outcome_improved": false,
+      "paired_benefit": true,
+      "paired_disadvantage": false,
+      "party_survival_rate": 1.0,
+      "wounded_ally_hp_final": null,
+      "target_survived": true,
+      "skill_metrics": {
+        "uses": 5,
+        "raw_damage": 15,
+        "effective_damage": 15,
+        "healing": 0,
+        "mana_cost": 20,
+        "damage_per_use": 3.0,
+        "damage_per_mana": 0.75,
+        "healing_per_mana": null,
+        "unique_target_count": 1,
+        "effect_application_count": 0,
+        "unique_effect_target_count": 0,
+        "usage_samples": [
+          {
+            "round": 1,
+            "raw_damage": 3,
+            "effective_damage": 3,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 2,
+            "raw_damage": 3,
+            "effective_damage": 3,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 3,
+            "raw_damage": 3,
+            "effective_damage": 3,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 4,
+            "raw_damage": 3,
+            "effective_damage": 3,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 5,
+            "raw_damage": 3,
+            "effective_damage": 3,
+            "healing": 0,
+            "mana_cost": 4
+          }
+        ]
+      },
+      "skill_initially_eligible": true,
+      "unavailable_reasons": [
+        "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+      ],
+      "hit_rate": null,
+      "failed_use_count": null,
+      "win_contribution": null
+    },
+    {
+      "case_id": "Golpe calibrado:weak",
+      "context_id": "weak",
+      "context": "Fraqueza ao tipo da habilidade",
+      "skill": "Golpe calibrado",
+      "category": "physical",
+      "skill_type": "physical",
+      "party_strategy": "effective_damage",
+      "mana_cost_per_use": 4,
+      "effect_type": null,
+      "control": {
+        "result": "victory",
+        "rounds": 30,
+        "party_damage_effective": 60,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "comparison": {
+        "result": "victory",
+        "rounds": 5,
+        "party_damage_effective": 60,
+        "mana_consumed": 20,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "round_reduction_fraction": 0.8333333333333334,
+      "party_damage_delta_fraction": 0.0,
+      "outcome_improved": false,
+      "paired_benefit": true,
+      "paired_disadvantage": false,
+      "party_survival_rate": 1.0,
+      "wounded_ally_hp_final": null,
+      "target_survived": false,
+      "skill_metrics": {
+        "uses": 5,
+        "raw_damage": 70,
+        "effective_damage": 60,
+        "healing": 0,
+        "mana_cost": 20,
+        "damage_per_use": 12.0,
+        "damage_per_mana": 3.0,
+        "healing_per_mana": null,
+        "unique_target_count": 1,
+        "effect_application_count": 0,
+        "unique_effect_target_count": 0,
+        "usage_samples": [
+          {
+            "round": 1,
+            "raw_damage": 14,
+            "effective_damage": 14,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 2,
+            "raw_damage": 14,
+            "effective_damage": 14,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 3,
+            "raw_damage": 14,
+            "effective_damage": 14,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 4,
+            "raw_damage": 14,
+            "effective_damage": 14,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 5,
+            "raw_damage": 14,
+            "effective_damage": 4,
+            "healing": 0,
+            "mana_cost": 4
+          }
+        ]
+      },
+      "skill_initially_eligible": true,
+      "unavailable_reasons": [
+        "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+      ],
+      "hit_rate": null,
+      "failed_use_count": null,
+      "win_contribution": null
+    },
+    {
+      "case_id": "Golpe calibrado:high-defense",
+      "context_id": "high-defense",
+      "context": "Defesa e resistência mágica elevadas",
+      "skill": "Golpe calibrado",
+      "category": "physical",
+      "skill_type": "physical",
+      "party_strategy": "effective_damage",
+      "mana_cost_per_use": 4,
+      "effect_type": null,
+      "control": {
+        "result": "turn_limit",
+        "rounds": 40,
+        "party_damage_effective": 40,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "comparison": {
+        "result": "turn_limit",
+        "rounds": 40,
+        "party_damage_effective": 40,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "round_reduction_fraction": 0.0,
+      "party_damage_delta_fraction": 0.0,
+      "outcome_improved": false,
+      "paired_benefit": false,
+      "paired_disadvantage": false,
+      "party_survival_rate": 1.0,
+      "wounded_ally_hp_final": null,
+      "target_survived": true,
+      "skill_metrics": {
+        "uses": 0,
+        "raw_damage": 0,
+        "effective_damage": 0,
+        "healing": 0,
+        "mana_cost": 0,
+        "damage_per_use": null,
+        "damage_per_mana": null,
+        "healing_per_mana": null,
+        "unique_target_count": 0,
+        "effect_application_count": 0,
+        "unique_effect_target_count": 0,
+        "usage_samples": []
+      },
+      "skill_initially_eligible": true,
+      "unavailable_reasons": [
+        "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+      ],
+      "hit_rate": null,
+      "failed_use_count": null,
+      "win_contribution": null
+    },
+    {
+      "case_id": "Golpe calibrado:low-hp",
+      "context_id": "low-hp",
+      "context": "Alvo com pouco HP e risco de overkill",
+      "skill": "Golpe calibrado",
+      "category": "physical",
+      "skill_type": "physical",
+      "party_strategy": "effective_damage",
+      "mana_cost_per_use": 4,
+      "effect_type": null,
+      "control": {
+        "result": "victory",
+        "rounds": 12,
+        "party_damage_effective": 12,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "comparison": {
+        "result": "victory",
+        "rounds": 2,
+        "party_damage_effective": 12,
+        "mana_consumed": 8,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "round_reduction_fraction": 0.8333333333333334,
+      "party_damage_delta_fraction": 0.0,
+      "outcome_improved": false,
+      "paired_benefit": true,
+      "paired_disadvantage": false,
+      "party_survival_rate": 1.0,
+      "wounded_ally_hp_final": null,
+      "target_survived": false,
+      "skill_metrics": {
+        "uses": 2,
+        "raw_damage": 14,
+        "effective_damage": 12,
+        "healing": 0,
+        "mana_cost": 8,
+        "damage_per_use": 6.0,
+        "damage_per_mana": 1.5,
+        "healing_per_mana": null,
+        "unique_target_count": 1,
+        "effect_application_count": 0,
+        "unique_effect_target_count": 0,
+        "usage_samples": [
+          {
+            "round": 1,
+            "raw_damage": 7,
+            "effective_damage": 7,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 2,
+            "raw_damage": 7,
+            "effective_damage": 5,
+            "healing": 0,
+            "mana_cost": 4
+          }
+        ]
+      },
+      "skill_initially_eligible": true,
+      "unavailable_reasons": [
+        "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+      ],
+      "hit_rate": null,
+      "failed_use_count": null,
+      "win_contribution": null
+    },
+    {
+      "case_id": "Orbe arcano:neutral",
+      "context_id": "neutral",
+      "context": "Alvo neutro",
+      "skill": "Orbe arcano",
+      "category": "magic",
+      "skill_type": "arcane",
+      "party_strategy": "effective_damage",
+      "mana_cost_per_use": 4,
+      "effect_type": null,
+      "control": {
+        "result": "turn_limit",
+        "rounds": 40,
+        "party_damage_effective": 40,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "comparison": {
+        "result": "victory",
+        "rounds": 5,
+        "party_damage_effective": 60,
+        "mana_consumed": 20,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "round_reduction_fraction": 0.875,
+      "party_damage_delta_fraction": 0.5,
+      "outcome_improved": true,
+      "paired_benefit": true,
+      "paired_disadvantage": false,
+      "party_survival_rate": 1.0,
+      "wounded_ally_hp_final": null,
+      "target_survived": false,
+      "skill_metrics": {
+        "uses": 5,
+        "raw_damage": 60,
+        "effective_damage": 60,
+        "healing": 0,
+        "mana_cost": 20,
+        "damage_per_use": 12.0,
+        "damage_per_mana": 3.0,
+        "healing_per_mana": null,
+        "unique_target_count": 1,
+        "effect_application_count": 0,
+        "unique_effect_target_count": 0,
+        "usage_samples": [
+          {
+            "round": 1,
+            "raw_damage": 12,
+            "effective_damage": 12,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 2,
+            "raw_damage": 12,
+            "effective_damage": 12,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 3,
+            "raw_damage": 12,
+            "effective_damage": 12,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 4,
+            "raw_damage": 12,
+            "effective_damage": 12,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 5,
+            "raw_damage": 12,
+            "effective_damage": 12,
+            "healing": 0,
+            "mana_cost": 4
+          }
+        ]
+      },
+      "skill_initially_eligible": true,
+      "unavailable_reasons": [
+        "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+      ],
+      "hit_rate": null,
+      "failed_use_count": null,
+      "win_contribution": null
+    },
+    {
+      "case_id": "Orbe arcano:resistant",
+      "context_id": "resistant",
+      "context": "Resistência ao tipo da habilidade",
+      "skill": "Orbe arcano",
+      "category": "magic",
+      "skill_type": "arcane",
+      "party_strategy": "effective_damage",
+      "mana_cost_per_use": 4,
+      "effect_type": null,
+      "control": {
+        "result": "turn_limit",
+        "rounds": 40,
+        "party_damage_effective": 40,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "comparison": {
+        "result": "victory",
+        "rounds": 35,
+        "party_damage_effective": 60,
+        "mana_consumed": 20,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "round_reduction_fraction": 0.125,
+      "party_damage_delta_fraction": 0.5,
+      "outcome_improved": true,
+      "paired_benefit": true,
+      "paired_disadvantage": false,
+      "party_survival_rate": 1.0,
+      "wounded_ally_hp_final": null,
+      "target_survived": false,
+      "skill_metrics": {
+        "uses": 5,
+        "raw_damage": 30,
+        "effective_damage": 30,
+        "healing": 0,
+        "mana_cost": 20,
+        "damage_per_use": 6.0,
+        "damage_per_mana": 1.5,
+        "healing_per_mana": null,
+        "unique_target_count": 1,
+        "effect_application_count": 0,
+        "unique_effect_target_count": 0,
+        "usage_samples": [
+          {
+            "round": 1,
+            "raw_damage": 6,
+            "effective_damage": 6,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 2,
+            "raw_damage": 6,
+            "effective_damage": 6,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 3,
+            "raw_damage": 6,
+            "effective_damage": 6,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 4,
+            "raw_damage": 6,
+            "effective_damage": 6,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 5,
+            "raw_damage": 6,
+            "effective_damage": 6,
+            "healing": 0,
+            "mana_cost": 4
+          }
+        ]
+      },
+      "skill_initially_eligible": true,
+      "unavailable_reasons": [
+        "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+      ],
+      "hit_rate": null,
+      "failed_use_count": null,
+      "win_contribution": null
+    },
+    {
+      "case_id": "Orbe arcano:weak",
+      "context_id": "weak",
+      "context": "Fraqueza ao tipo da habilidade",
+      "skill": "Orbe arcano",
+      "category": "magic",
+      "skill_type": "arcane",
+      "party_strategy": "effective_damage",
+      "mana_cost_per_use": 4,
+      "effect_type": null,
+      "control": {
+        "result": "turn_limit",
+        "rounds": 40,
+        "party_damage_effective": 40,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "comparison": {
+        "result": "victory",
+        "rounds": 3,
+        "party_damage_effective": 60,
+        "mana_consumed": 12,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "round_reduction_fraction": 0.925,
+      "party_damage_delta_fraction": 0.5,
+      "outcome_improved": true,
+      "paired_benefit": true,
+      "paired_disadvantage": false,
+      "party_survival_rate": 1.0,
+      "wounded_ally_hp_final": null,
+      "target_survived": false,
+      "skill_metrics": {
+        "uses": 3,
+        "raw_damage": 72,
+        "effective_damage": 60,
+        "healing": 0,
+        "mana_cost": 12,
+        "damage_per_use": 20.0,
+        "damage_per_mana": 5.0,
+        "healing_per_mana": null,
+        "unique_target_count": 1,
+        "effect_application_count": 0,
+        "unique_effect_target_count": 0,
+        "usage_samples": [
+          {
+            "round": 1,
+            "raw_damage": 24,
+            "effective_damage": 24,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 2,
+            "raw_damage": 24,
+            "effective_damage": 24,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 3,
+            "raw_damage": 24,
+            "effective_damage": 12,
+            "healing": 0,
+            "mana_cost": 4
+          }
+        ]
+      },
+      "skill_initially_eligible": true,
+      "unavailable_reasons": [
+        "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+      ],
+      "hit_rate": null,
+      "failed_use_count": null,
+      "win_contribution": null
+    },
+    {
+      "case_id": "Orbe arcano:high-defense",
+      "context_id": "high-defense",
+      "context": "Defesa e resistência mágica elevadas",
+      "skill": "Orbe arcano",
+      "category": "magic",
+      "skill_type": "arcane",
+      "party_strategy": "effective_damage",
+      "mana_cost_per_use": 4,
+      "effect_type": null,
+      "control": {
+        "result": "turn_limit",
+        "rounds": 40,
+        "party_damage_effective": 40,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "comparison": {
+        "result": "turn_limit",
+        "rounds": 40,
+        "party_damage_effective": 40,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "round_reduction_fraction": 0.0,
+      "party_damage_delta_fraction": 0.0,
+      "outcome_improved": false,
+      "paired_benefit": false,
+      "paired_disadvantage": false,
+      "party_survival_rate": 1.0,
+      "wounded_ally_hp_final": null,
+      "target_survived": true,
+      "skill_metrics": {
+        "uses": 0,
+        "raw_damage": 0,
+        "effective_damage": 0,
+        "healing": 0,
+        "mana_cost": 0,
+        "damage_per_use": null,
+        "damage_per_mana": null,
+        "healing_per_mana": null,
+        "unique_target_count": 0,
+        "effect_application_count": 0,
+        "unique_effect_target_count": 0,
+        "usage_samples": []
+      },
+      "skill_initially_eligible": true,
+      "unavailable_reasons": [
+        "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+      ],
+      "hit_rate": null,
+      "failed_use_count": null,
+      "win_contribution": null
+    },
+    {
+      "case_id": "Orbe arcano:low-hp",
+      "context_id": "low-hp",
+      "context": "Alvo com pouco HP e risco de overkill",
+      "skill": "Orbe arcano",
+      "category": "magic",
+      "skill_type": "arcane",
+      "party_strategy": "effective_damage",
+      "mana_cost_per_use": 4,
+      "effect_type": null,
+      "control": {
+        "result": "victory",
+        "rounds": 12,
+        "party_damage_effective": 12,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "comparison": {
+        "result": "victory",
+        "rounds": 1,
+        "party_damage_effective": 12,
+        "mana_consumed": 4,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "round_reduction_fraction": 0.9166666666666666,
+      "party_damage_delta_fraction": 0.0,
+      "outcome_improved": false,
+      "paired_benefit": true,
+      "paired_disadvantage": false,
+      "party_survival_rate": 1.0,
+      "wounded_ally_hp_final": null,
+      "target_survived": false,
+      "skill_metrics": {
+        "uses": 1,
+        "raw_damage": 12,
+        "effective_damage": 12,
+        "healing": 0,
+        "mana_cost": 4,
+        "damage_per_use": 12.0,
+        "damage_per_mana": 3.0,
+        "healing_per_mana": null,
+        "unique_target_count": 1,
+        "effect_application_count": 0,
+        "unique_effect_target_count": 0,
+        "usage_samples": [
+          {
+            "round": 1,
+            "raw_damage": 12,
+            "effective_damage": 12,
+            "healing": 0,
+            "mana_cost": 4
+          }
+        ]
+      },
+      "skill_initially_eligible": true,
+      "unavailable_reasons": [
+        "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+      ],
+      "hit_rate": null,
+      "failed_use_count": null,
+      "win_contribution": null
+    },
+    {
+      "case_id": "Chama controlada:neutral",
+      "context_id": "neutral",
+      "context": "Alvo neutro",
+      "skill": "Chama controlada",
+      "category": "magic",
+      "skill_type": "fire",
+      "party_strategy": "effective_damage",
+      "mana_cost_per_use": 4,
+      "effect_type": null,
+      "control": {
+        "result": "turn_limit",
+        "rounds": 40,
+        "party_damage_effective": 40,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "comparison": {
+        "result": "victory",
+        "rounds": 5,
+        "party_damage_effective": 60,
+        "mana_consumed": 20,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "round_reduction_fraction": 0.875,
+      "party_damage_delta_fraction": 0.5,
+      "outcome_improved": true,
+      "paired_benefit": true,
+      "paired_disadvantage": false,
+      "party_survival_rate": 1.0,
+      "wounded_ally_hp_final": null,
+      "target_survived": false,
+      "skill_metrics": {
+        "uses": 5,
+        "raw_damage": 60,
+        "effective_damage": 60,
+        "healing": 0,
+        "mana_cost": 20,
+        "damage_per_use": 12.0,
+        "damage_per_mana": 3.0,
+        "healing_per_mana": null,
+        "unique_target_count": 1,
+        "effect_application_count": 0,
+        "unique_effect_target_count": 0,
+        "usage_samples": [
+          {
+            "round": 1,
+            "raw_damage": 12,
+            "effective_damage": 12,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 2,
+            "raw_damage": 12,
+            "effective_damage": 12,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 3,
+            "raw_damage": 12,
+            "effective_damage": 12,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 4,
+            "raw_damage": 12,
+            "effective_damage": 12,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 5,
+            "raw_damage": 12,
+            "effective_damage": 12,
+            "healing": 0,
+            "mana_cost": 4
+          }
+        ]
+      },
+      "skill_initially_eligible": true,
+      "unavailable_reasons": [
+        "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+      ],
+      "hit_rate": null,
+      "failed_use_count": null,
+      "win_contribution": null
+    },
+    {
+      "case_id": "Chama controlada:resistant",
+      "context_id": "resistant",
+      "context": "Resistência ao tipo da habilidade",
+      "skill": "Chama controlada",
+      "category": "magic",
+      "skill_type": "fire",
+      "party_strategy": "effective_damage",
+      "mana_cost_per_use": 4,
+      "effect_type": null,
+      "control": {
+        "result": "turn_limit",
+        "rounds": 40,
+        "party_damage_effective": 40,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "comparison": {
+        "result": "victory",
+        "rounds": 35,
+        "party_damage_effective": 60,
+        "mana_consumed": 20,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "round_reduction_fraction": 0.125,
+      "party_damage_delta_fraction": 0.5,
+      "outcome_improved": true,
+      "paired_benefit": true,
+      "paired_disadvantage": false,
+      "party_survival_rate": 1.0,
+      "wounded_ally_hp_final": null,
+      "target_survived": false,
+      "skill_metrics": {
+        "uses": 5,
+        "raw_damage": 30,
+        "effective_damage": 30,
+        "healing": 0,
+        "mana_cost": 20,
+        "damage_per_use": 6.0,
+        "damage_per_mana": 1.5,
+        "healing_per_mana": null,
+        "unique_target_count": 1,
+        "effect_application_count": 0,
+        "unique_effect_target_count": 0,
+        "usage_samples": [
+          {
+            "round": 1,
+            "raw_damage": 6,
+            "effective_damage": 6,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 2,
+            "raw_damage": 6,
+            "effective_damage": 6,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 3,
+            "raw_damage": 6,
+            "effective_damage": 6,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 4,
+            "raw_damage": 6,
+            "effective_damage": 6,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 5,
+            "raw_damage": 6,
+            "effective_damage": 6,
+            "healing": 0,
+            "mana_cost": 4
+          }
+        ]
+      },
+      "skill_initially_eligible": true,
+      "unavailable_reasons": [
+        "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+      ],
+      "hit_rate": null,
+      "failed_use_count": null,
+      "win_contribution": null
+    },
+    {
+      "case_id": "Chama controlada:weak",
+      "context_id": "weak",
+      "context": "Fraqueza ao tipo da habilidade",
+      "skill": "Chama controlada",
+      "category": "magic",
+      "skill_type": "fire",
+      "party_strategy": "effective_damage",
+      "mana_cost_per_use": 4,
+      "effect_type": null,
+      "control": {
+        "result": "turn_limit",
+        "rounds": 40,
+        "party_damage_effective": 40,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "comparison": {
+        "result": "victory",
+        "rounds": 3,
+        "party_damage_effective": 60,
+        "mana_consumed": 12,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "round_reduction_fraction": 0.925,
+      "party_damage_delta_fraction": 0.5,
+      "outcome_improved": true,
+      "paired_benefit": true,
+      "paired_disadvantage": false,
+      "party_survival_rate": 1.0,
+      "wounded_ally_hp_final": null,
+      "target_survived": false,
+      "skill_metrics": {
+        "uses": 3,
+        "raw_damage": 72,
+        "effective_damage": 60,
+        "healing": 0,
+        "mana_cost": 12,
+        "damage_per_use": 20.0,
+        "damage_per_mana": 5.0,
+        "healing_per_mana": null,
+        "unique_target_count": 1,
+        "effect_application_count": 0,
+        "unique_effect_target_count": 0,
+        "usage_samples": [
+          {
+            "round": 1,
+            "raw_damage": 24,
+            "effective_damage": 24,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 2,
+            "raw_damage": 24,
+            "effective_damage": 24,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 3,
+            "raw_damage": 24,
+            "effective_damage": 12,
+            "healing": 0,
+            "mana_cost": 4
+          }
+        ]
+      },
+      "skill_initially_eligible": true,
+      "unavailable_reasons": [
+        "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+      ],
+      "hit_rate": null,
+      "failed_use_count": null,
+      "win_contribution": null
+    },
+    {
+      "case_id": "Chama controlada:high-defense",
+      "context_id": "high-defense",
+      "context": "Defesa e resistência mágica elevadas",
+      "skill": "Chama controlada",
+      "category": "magic",
+      "skill_type": "fire",
+      "party_strategy": "effective_damage",
+      "mana_cost_per_use": 4,
+      "effect_type": null,
+      "control": {
+        "result": "turn_limit",
+        "rounds": 40,
+        "party_damage_effective": 40,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "comparison": {
+        "result": "turn_limit",
+        "rounds": 40,
+        "party_damage_effective": 40,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "round_reduction_fraction": 0.0,
+      "party_damage_delta_fraction": 0.0,
+      "outcome_improved": false,
+      "paired_benefit": false,
+      "paired_disadvantage": false,
+      "party_survival_rate": 1.0,
+      "wounded_ally_hp_final": null,
+      "target_survived": true,
+      "skill_metrics": {
+        "uses": 0,
+        "raw_damage": 0,
+        "effective_damage": 0,
+        "healing": 0,
+        "mana_cost": 0,
+        "damage_per_use": null,
+        "damage_per_mana": null,
+        "healing_per_mana": null,
+        "unique_target_count": 0,
+        "effect_application_count": 0,
+        "unique_effect_target_count": 0,
+        "usage_samples": []
+      },
+      "skill_initially_eligible": true,
+      "unavailable_reasons": [
+        "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+      ],
+      "hit_rate": null,
+      "failed_use_count": null,
+      "win_contribution": null
+    },
+    {
+      "case_id": "Chama controlada:low-hp",
+      "context_id": "low-hp",
+      "context": "Alvo com pouco HP e risco de overkill",
+      "skill": "Chama controlada",
+      "category": "magic",
+      "skill_type": "fire",
+      "party_strategy": "effective_damage",
+      "mana_cost_per_use": 4,
+      "effect_type": null,
+      "control": {
+        "result": "victory",
+        "rounds": 12,
+        "party_damage_effective": 12,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "comparison": {
+        "result": "victory",
+        "rounds": 1,
+        "party_damage_effective": 12,
+        "mana_consumed": 4,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "round_reduction_fraction": 0.9166666666666666,
+      "party_damage_delta_fraction": 0.0,
+      "outcome_improved": false,
+      "paired_benefit": true,
+      "paired_disadvantage": false,
+      "party_survival_rate": 1.0,
+      "wounded_ally_hp_final": null,
+      "target_survived": false,
+      "skill_metrics": {
+        "uses": 1,
+        "raw_damage": 12,
+        "effective_damage": 12,
+        "healing": 0,
+        "mana_cost": 4,
+        "damage_per_use": 12.0,
+        "damage_per_mana": 3.0,
+        "healing_per_mana": null,
+        "unique_target_count": 1,
+        "effect_application_count": 0,
+        "unique_effect_target_count": 0,
+        "usage_samples": [
+          {
+            "round": 1,
+            "raw_damage": 12,
+            "effective_damage": 12,
+            "healing": 0,
+            "mana_cost": 4
+          }
+        ]
+      },
+      "skill_initially_eligible": true,
+      "unavailable_reasons": [
+        "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+      ],
+      "hit_rate": null,
+      "failed_use_count": null,
+      "win_contribution": null
+    },
+    {
+      "case_id": "Veneno gradual:neutral",
+      "context_id": "neutral",
+      "context": "Alvo neutro",
+      "skill": "Veneno gradual",
+      "category": "special",
+      "skill_type": "poison",
+      "party_strategy": "effective_damage",
+      "mana_cost_per_use": 4,
+      "effect_type": "damage_over_time",
+      "control": {
+        "result": "turn_limit",
+        "rounds": 40,
+        "party_damage_effective": 40,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "comparison": {
+        "result": "victory",
+        "rounds": 27,
+        "party_damage_effective": 42,
+        "mana_consumed": 20,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "round_reduction_fraction": 0.325,
+      "party_damage_delta_fraction": 0.05,
+      "outcome_improved": true,
+      "paired_benefit": true,
+      "paired_disadvantage": false,
+      "party_survival_rate": 1.0,
+      "wounded_ally_hp_final": null,
+      "target_survived": false,
+      "skill_metrics": {
+        "uses": 5,
+        "raw_damage": 20,
+        "effective_damage": 20,
+        "healing": 0,
+        "mana_cost": 20,
+        "damage_per_use": 4.0,
+        "damage_per_mana": 1.0,
+        "healing_per_mana": null,
+        "unique_target_count": 1,
+        "effect_application_count": 3,
+        "unique_effect_target_count": 1,
+        "usage_samples": [
+          {
+            "round": 1,
+            "raw_damage": 4,
+            "effective_damage": 4,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 2,
+            "raw_damage": 4,
+            "effective_damage": 4,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 3,
+            "raw_damage": 4,
+            "effective_damage": 4,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 4,
+            "raw_damage": 4,
+            "effective_damage": 4,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 5,
+            "raw_damage": 4,
+            "effective_damage": 4,
+            "healing": 0,
+            "mana_cost": 4
+          }
+        ]
+      },
+      "skill_initially_eligible": true,
+      "unavailable_reasons": [
+        "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+      ],
+      "hit_rate": null,
+      "failed_use_count": null,
+      "win_contribution": null
+    },
+    {
+      "case_id": "Veneno gradual:resistant",
+      "context_id": "resistant",
+      "context": "Resistência ao tipo da habilidade",
+      "skill": "Veneno gradual",
+      "category": "special",
+      "skill_type": "poison",
+      "party_strategy": "effective_damage",
+      "mana_cost_per_use": 4,
+      "effect_type": "damage_over_time",
+      "control": {
+        "result": "turn_limit",
+        "rounds": 40,
+        "party_damage_effective": 40,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "comparison": {
+        "result": "turn_limit",
+        "rounds": 40,
+        "party_damage_effective": 45,
+        "mana_consumed": 20,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "round_reduction_fraction": 0.0,
+      "party_damage_delta_fraction": 0.125,
+      "outcome_improved": false,
+      "paired_benefit": true,
+      "paired_disadvantage": false,
+      "party_survival_rate": 1.0,
+      "wounded_ally_hp_final": null,
+      "target_survived": true,
+      "skill_metrics": {
+        "uses": 5,
+        "raw_damage": 10,
+        "effective_damage": 10,
+        "healing": 0,
+        "mana_cost": 20,
+        "damage_per_use": 2.0,
+        "damage_per_mana": 0.5,
+        "healing_per_mana": null,
+        "unique_target_count": 1,
+        "effect_application_count": 3,
+        "unique_effect_target_count": 1,
+        "usage_samples": [
+          {
+            "round": 1,
+            "raw_damage": 2,
+            "effective_damage": 2,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 2,
+            "raw_damage": 2,
+            "effective_damage": 2,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 3,
+            "raw_damage": 2,
+            "effective_damage": 2,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 4,
+            "raw_damage": 2,
+            "effective_damage": 2,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 5,
+            "raw_damage": 2,
+            "effective_damage": 2,
+            "healing": 0,
+            "mana_cost": 4
+          }
+        ]
+      },
+      "skill_initially_eligible": true,
+      "unavailable_reasons": [
+        "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+      ],
+      "hit_rate": null,
+      "failed_use_count": null,
+      "win_contribution": null
+    },
+    {
+      "case_id": "Veneno gradual:weak",
+      "context_id": "weak",
+      "context": "Fraqueza ao tipo da habilidade",
+      "skill": "Veneno gradual",
+      "category": "special",
+      "skill_type": "poison",
+      "party_strategy": "effective_damage",
+      "mana_cost_per_use": 4,
+      "effect_type": "damage_over_time",
+      "control": {
+        "result": "turn_limit",
+        "rounds": 40,
+        "party_damage_effective": 40,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "comparison": {
+        "result": "victory",
+        "rounds": 5,
+        "party_damage_effective": 36,
+        "mana_consumed": 20,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "round_reduction_fraction": 0.875,
+      "party_damage_delta_fraction": -0.1,
+      "outcome_improved": true,
+      "paired_benefit": true,
+      "paired_disadvantage": false,
+      "party_survival_rate": 1.0,
+      "wounded_ally_hp_final": null,
+      "target_survived": false,
+      "skill_metrics": {
+        "uses": 5,
+        "raw_damage": 40,
+        "effective_damage": 36,
+        "healing": 0,
+        "mana_cost": 20,
+        "damage_per_use": 7.2,
+        "damage_per_mana": 1.8,
+        "healing_per_mana": null,
+        "unique_target_count": 1,
+        "effect_application_count": 3,
+        "unique_effect_target_count": 1,
+        "usage_samples": [
+          {
+            "round": 1,
+            "raw_damage": 8,
+            "effective_damage": 8,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 2,
+            "raw_damage": 8,
+            "effective_damage": 8,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 3,
+            "raw_damage": 8,
+            "effective_damage": 8,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 4,
+            "raw_damage": 8,
+            "effective_damage": 8,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 5,
+            "raw_damage": 8,
+            "effective_damage": 4,
+            "healing": 0,
+            "mana_cost": 4
+          }
+        ]
+      },
+      "skill_initially_eligible": true,
+      "unavailable_reasons": [
+        "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+      ],
+      "hit_rate": null,
+      "failed_use_count": null,
+      "win_contribution": null
+    },
+    {
+      "case_id": "Veneno gradual:high-defense",
+      "context_id": "high-defense",
+      "context": "Defesa e resistência mágica elevadas",
+      "skill": "Veneno gradual",
+      "category": "special",
+      "skill_type": "poison",
+      "party_strategy": "effective_damage",
+      "mana_cost_per_use": 4,
+      "effect_type": "damage_over_time",
+      "control": {
+        "result": "turn_limit",
+        "rounds": 40,
+        "party_damage_effective": 40,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "comparison": {
+        "result": "turn_limit",
+        "rounds": 40,
+        "party_damage_effective": 40,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "round_reduction_fraction": 0.0,
+      "party_damage_delta_fraction": 0.0,
+      "outcome_improved": false,
+      "paired_benefit": false,
+      "paired_disadvantage": false,
+      "party_survival_rate": 1.0,
+      "wounded_ally_hp_final": null,
+      "target_survived": true,
+      "skill_metrics": {
+        "uses": 0,
+        "raw_damage": 0,
+        "effective_damage": 0,
+        "healing": 0,
+        "mana_cost": 0,
+        "damage_per_use": null,
+        "damage_per_mana": null,
+        "healing_per_mana": null,
+        "unique_target_count": 0,
+        "effect_application_count": 0,
+        "unique_effect_target_count": 0,
+        "usage_samples": []
+      },
+      "skill_initially_eligible": true,
+      "unavailable_reasons": [
+        "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+      ],
+      "hit_rate": null,
+      "failed_use_count": null,
+      "win_contribution": null
+    },
+    {
+      "case_id": "Veneno gradual:low-hp",
+      "context_id": "low-hp",
+      "context": "Alvo com pouco HP e risco de overkill",
+      "skill": "Veneno gradual",
+      "category": "special",
+      "skill_type": "poison",
+      "party_strategy": "effective_damage",
+      "mana_cost_per_use": 4,
+      "effect_type": "damage_over_time",
+      "control": {
+        "result": "victory",
+        "rounds": 12,
+        "party_damage_effective": 12,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "comparison": {
+        "result": "victory",
+        "rounds": 2,
+        "party_damage_effective": 8,
+        "mana_consumed": 8,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "round_reduction_fraction": 0.8333333333333334,
+      "party_damage_delta_fraction": -0.3333333333333333,
+      "outcome_improved": false,
+      "paired_benefit": true,
+      "paired_disadvantage": false,
+      "party_survival_rate": 1.0,
+      "wounded_ally_hp_final": null,
+      "target_survived": false,
+      "skill_metrics": {
+        "uses": 2,
+        "raw_damage": 8,
+        "effective_damage": 8,
+        "healing": 0,
+        "mana_cost": 8,
+        "damage_per_use": 4.0,
+        "damage_per_mana": 1.0,
+        "healing_per_mana": null,
+        "unique_target_count": 1,
+        "effect_application_count": 1,
+        "unique_effect_target_count": 1,
+        "usage_samples": [
+          {
+            "round": 1,
+            "raw_damage": 4,
+            "effective_damage": 4,
+            "healing": 0,
+            "mana_cost": 4
+          },
+          {
+            "round": 2,
+            "raw_damage": 4,
+            "effective_damage": 4,
+            "healing": 0,
+            "mana_cost": 4
+          }
+        ]
+      },
+      "skill_initially_eligible": true,
+      "unavailable_reasons": [
+        "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+      ],
+      "hit_rate": null,
+      "failed_use_count": null,
+      "win_contribution": null
+    },
+    {
+      "case_id": "Técnica de mana restrita:neutral",
+      "context_id": "neutral",
+      "context": "Alvo neutro",
+      "skill": "Técnica de mana restrita",
+      "category": "magic",
+      "skill_type": "arcane",
+      "party_strategy": "effective_damage",
+      "mana_cost_per_use": 24,
+      "effect_type": null,
+      "control": {
+        "result": "turn_limit",
+        "rounds": 40,
+        "party_damage_effective": 40,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "comparison": {
+        "result": "turn_limit",
+        "rounds": 40,
+        "party_damage_effective": 40,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "round_reduction_fraction": 0.0,
+      "party_damage_delta_fraction": 0.0,
+      "outcome_improved": false,
+      "paired_benefit": false,
+      "paired_disadvantage": false,
+      "party_survival_rate": 1.0,
+      "wounded_ally_hp_final": null,
+      "target_survived": true,
+      "skill_metrics": {
+        "uses": 0,
+        "raw_damage": 0,
+        "effective_damage": 0,
+        "healing": 0,
+        "mana_cost": 0,
+        "damage_per_use": null,
+        "damage_per_mana": null,
+        "healing_per_mana": null,
+        "unique_target_count": 0,
+        "effect_application_count": 0,
+        "unique_effect_target_count": 0,
+        "usage_samples": []
+      },
+      "skill_initially_eligible": false,
+      "unavailable_reasons": [
+        "mana insuficiente no início"
+      ],
+      "hit_rate": null,
+      "failed_use_count": null,
+      "win_contribution": null
+    },
+    {
+      "case_id": "Técnica de mana restrita:resistant",
+      "context_id": "resistant",
+      "context": "Resistência ao tipo da habilidade",
+      "skill": "Técnica de mana restrita",
+      "category": "magic",
+      "skill_type": "arcane",
+      "party_strategy": "effective_damage",
+      "mana_cost_per_use": 24,
+      "effect_type": null,
+      "control": {
+        "result": "turn_limit",
+        "rounds": 40,
+        "party_damage_effective": 40,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "comparison": {
+        "result": "turn_limit",
+        "rounds": 40,
+        "party_damage_effective": 40,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "round_reduction_fraction": 0.0,
+      "party_damage_delta_fraction": 0.0,
+      "outcome_improved": false,
+      "paired_benefit": false,
+      "paired_disadvantage": false,
+      "party_survival_rate": 1.0,
+      "wounded_ally_hp_final": null,
+      "target_survived": true,
+      "skill_metrics": {
+        "uses": 0,
+        "raw_damage": 0,
+        "effective_damage": 0,
+        "healing": 0,
+        "mana_cost": 0,
+        "damage_per_use": null,
+        "damage_per_mana": null,
+        "healing_per_mana": null,
+        "unique_target_count": 0,
+        "effect_application_count": 0,
+        "unique_effect_target_count": 0,
+        "usage_samples": []
+      },
+      "skill_initially_eligible": false,
+      "unavailable_reasons": [
+        "mana insuficiente no início"
+      ],
+      "hit_rate": null,
+      "failed_use_count": null,
+      "win_contribution": null
+    },
+    {
+      "case_id": "Técnica de mana restrita:weak",
+      "context_id": "weak",
+      "context": "Fraqueza ao tipo da habilidade",
+      "skill": "Técnica de mana restrita",
+      "category": "magic",
+      "skill_type": "arcane",
+      "party_strategy": "effective_damage",
+      "mana_cost_per_use": 24,
+      "effect_type": null,
+      "control": {
+        "result": "turn_limit",
+        "rounds": 40,
+        "party_damage_effective": 40,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "comparison": {
+        "result": "turn_limit",
+        "rounds": 40,
+        "party_damage_effective": 40,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "round_reduction_fraction": 0.0,
+      "party_damage_delta_fraction": 0.0,
+      "outcome_improved": false,
+      "paired_benefit": false,
+      "paired_disadvantage": false,
+      "party_survival_rate": 1.0,
+      "wounded_ally_hp_final": null,
+      "target_survived": true,
+      "skill_metrics": {
+        "uses": 0,
+        "raw_damage": 0,
+        "effective_damage": 0,
+        "healing": 0,
+        "mana_cost": 0,
+        "damage_per_use": null,
+        "damage_per_mana": null,
+        "healing_per_mana": null,
+        "unique_target_count": 0,
+        "effect_application_count": 0,
+        "unique_effect_target_count": 0,
+        "usage_samples": []
+      },
+      "skill_initially_eligible": false,
+      "unavailable_reasons": [
+        "mana insuficiente no início"
+      ],
+      "hit_rate": null,
+      "failed_use_count": null,
+      "win_contribution": null
+    },
+    {
+      "case_id": "Técnica de mana restrita:high-defense",
+      "context_id": "high-defense",
+      "context": "Defesa e resistência mágica elevadas",
+      "skill": "Técnica de mana restrita",
+      "category": "magic",
+      "skill_type": "arcane",
+      "party_strategy": "effective_damage",
+      "mana_cost_per_use": 24,
+      "effect_type": null,
+      "control": {
+        "result": "turn_limit",
+        "rounds": 40,
+        "party_damage_effective": 40,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "comparison": {
+        "result": "turn_limit",
+        "rounds": 40,
+        "party_damage_effective": 40,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "round_reduction_fraction": 0.0,
+      "party_damage_delta_fraction": 0.0,
+      "outcome_improved": false,
+      "paired_benefit": false,
+      "paired_disadvantage": false,
+      "party_survival_rate": 1.0,
+      "wounded_ally_hp_final": null,
+      "target_survived": true,
+      "skill_metrics": {
+        "uses": 0,
+        "raw_damage": 0,
+        "effective_damage": 0,
+        "healing": 0,
+        "mana_cost": 0,
+        "damage_per_use": null,
+        "damage_per_mana": null,
+        "healing_per_mana": null,
+        "unique_target_count": 0,
+        "effect_application_count": 0,
+        "unique_effect_target_count": 0,
+        "usage_samples": []
+      },
+      "skill_initially_eligible": false,
+      "unavailable_reasons": [
+        "mana insuficiente no início"
+      ],
+      "hit_rate": null,
+      "failed_use_count": null,
+      "win_contribution": null
+    },
+    {
+      "case_id": "Técnica de mana restrita:low-hp",
+      "context_id": "low-hp",
+      "context": "Alvo com pouco HP e risco de overkill",
+      "skill": "Técnica de mana restrita",
+      "category": "magic",
+      "skill_type": "arcane",
+      "party_strategy": "effective_damage",
+      "mana_cost_per_use": 24,
+      "effect_type": null,
+      "control": {
+        "result": "victory",
+        "rounds": 12,
+        "party_damage_effective": 12,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "comparison": {
+        "result": "victory",
+        "rounds": 12,
+        "party_damage_effective": 12,
+        "mana_consumed": 0,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": null
+      },
+      "round_reduction_fraction": 0.0,
+      "party_damage_delta_fraction": 0.0,
+      "outcome_improved": false,
+      "paired_benefit": false,
+      "paired_disadvantage": false,
+      "party_survival_rate": 1.0,
+      "wounded_ally_hp_final": null,
+      "target_survived": false,
+      "skill_metrics": {
+        "uses": 0,
+        "raw_damage": 0,
+        "effective_damage": 0,
+        "healing": 0,
+        "mana_cost": 0,
+        "damage_per_use": null,
+        "damage_per_mana": null,
+        "healing_per_mana": null,
+        "unique_target_count": 0,
+        "effect_application_count": 0,
+        "unique_effect_target_count": 0,
+        "usage_samples": []
+      },
+      "skill_initially_eligible": false,
+      "unavailable_reasons": [
+        "mana insuficiente no início"
+      ],
+      "hit_rate": null,
+      "failed_use_count": null,
+      "win_contribution": null
+    },
+    {
+      "case_id": "Restauração sintética:wounded-ally",
+      "context_id": "wounded-ally",
+      "context": "Aliado começa com 25% de HP",
+      "skill": "Restauração sintética",
+      "category": "healing",
+      "skill_type": "heal",
+      "party_strategy": "survival",
+      "mana_cost_per_use": 4,
+      "effect_type": null,
+      "control": {
+        "result": "defeat",
+        "rounds": 18,
+        "party_damage_effective": 60,
+        "mana_consumed": 0,
+        "party_survival_rate": 0.0,
+        "wounded_ally_hp_final": 0
+      },
+      "comparison": {
+        "result": "turn_limit",
+        "rounds": 14,
+        "party_damage_effective": 72,
+        "mana_consumed": 12,
+        "party_survival_rate": 1.0,
+        "wounded_ally_hp_final": 30
+      },
+      "round_reduction_fraction": 0.2222222222222222,
+      "party_damage_delta_fraction": 0.2,
+      "outcome_improved": true,
+      "paired_benefit": true,
+      "paired_disadvantage": false,
+      "party_survival_rate": 1.0,
+      "wounded_ally_hp_final": 30,
+      "target_survived": true,
+      "skill_metrics": {
+        "uses": 3,
+        "raw_damage": 0,
+        "effective_damage": 0,
+        "healing": 60,
+        "mana_cost": 12,
+        "damage_per_use": 0.0,
+        "damage_per_mana": null,
+        "healing_per_mana": 5.0,
+        "unique_target_count": 2,
+        "effect_application_count": 0,
+        "unique_effect_target_count": 0,
+        "usage_samples": [
+          {
+            "round": 1,
+            "raw_damage": 0,
+            "effective_damage": 0,
+            "healing": 20,
+            "mana_cost": 4
+          },
+          {
+            "round": 9,
+            "raw_damage": 0,
+            "effective_damage": 0,
+            "healing": 20,
+            "mana_cost": 4
+          },
+          {
+            "round": 13,
+            "raw_damage": 0,
+            "effective_damage": 0,
+            "healing": 20,
+            "mana_cost": 4
+          }
+        ]
+      },
+      "skill_initially_eligible": true,
+      "unavailable_reasons": [
+        "motivos de inelegibilidade em turnos posteriores não são registrados pelo motor"
+      ],
+      "hit_rate": null,
+      "failed_use_count": null,
+      "win_contribution": null
+    }
+  ],
+  "ai_observations": [
+    {
+      "case_id": "enemy-elemental-choice",
+      "strategy": "baseline",
+      "first_enemy_action_skill": "Projétil arcano",
+      "first_turn_eligible_skills": [
+        "Explosão de fogo",
+        "Projétil arcano"
+      ],
+      "eligible_skills_not_selected_first_turn": [
+        "Explosão de fogo"
+      ],
+      "selected_mana_cost": 4,
+      "battle_result": "turn_limit",
+      "rounds": 3,
+      "evidence_scope": "decisão observada no primeiro turno inimigo de cenário sintético",
+      "first_turn_selection_count_by_skill": {
+        "Explosão de fogo": 1,
+        "Projétil arcano": 1
+      },
+      "first_turn_selection_frequency_by_skill": {
+        "Explosão de fogo": 0.5,
+        "Projétil arcano": 0.5
+      }
+    },
+    {
+      "case_id": "enemy-elemental-choice",
+      "strategy": "elemental_weakness",
+      "first_enemy_action_skill": "Explosão de fogo",
+      "first_turn_eligible_skills": [
+        "Explosão de fogo",
+        "Projétil arcano"
+      ],
+      "eligible_skills_not_selected_first_turn": [
+        "Projétil arcano"
+      ],
+      "selected_mana_cost": 4,
+      "battle_result": "turn_limit",
+      "rounds": 3,
+      "evidence_scope": "decisão observada no primeiro turno inimigo de cenário sintético",
+      "first_turn_selection_count_by_skill": {
+        "Explosão de fogo": 1,
+        "Projétil arcano": 1
+      },
+      "first_turn_selection_frequency_by_skill": {
+        "Explosão de fogo": 0.5,
+        "Projétil arcano": 0.5
+      }
+    },
+    {
+      "case_id": "enemy-mana-choice",
+      "strategy": "baseline",
+      "first_enemy_action_skill": "Feitiço econômico",
+      "first_turn_eligible_skills": [
+        "Feitiço econômico",
+        "Feitiço caro"
+      ],
+      "eligible_skills_not_selected_first_turn": [
+        "Feitiço caro"
+      ],
+      "selected_mana_cost": 2,
+      "battle_result": "turn_limit",
+      "rounds": 3,
+      "evidence_scope": "decisão observada no primeiro turno inimigo de cenário sintético",
+      "first_turn_selection_count_by_skill": {
+        "Feitiço econômico": 1,
+        "Feitiço caro": 0
+      },
+      "first_turn_selection_frequency_by_skill": {
+        "Feitiço econômico": 1.0,
+        "Feitiço caro": 0.0
+      }
+    }
+  ],
+  "conclusions": {
+    "synthetic_observations": [
+      "17 de 26 contrastes mostraram benefício pareado (resultado melhor, ou mesmo resultado com mais dano efetivo ou menos rodadas); são observações determinísticas.",
+      "Foram observadas 10 aplicações de efeitos e 60 pontos de cura efetiva no conjunto sintético.",
+      "Na escolha elemental, baseline selecionou Projétil arcano e elemental_weakness selecionou Explosão de fogo.",
+      "No cenário de custo, baseline selecionou Feitiço econômico entre habilidades sintéticas de mesmo dano e custos diferentes.",
+      "As métricas não permitem inferir uso real nem balanceamento do catálogo canônico."
+    ],
+    "hypotheses": [
+      "Fraquezas, resistências, defesa e HP do alvo alteram eficiência direta e podem alterar a escolha da IA.",
+      "A eficiência observada de efeitos contínuos é subestimada no dano por mana por falta de atribuição de ticks no motor."
+    ],
+    "canonical_conclusions": "Nenhuma habilidade canônica pode ser classificada: o catálogo canônico não foi lido."
+  }
+}

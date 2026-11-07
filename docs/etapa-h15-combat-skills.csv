@@ -1,0 +1,7 @@
+source_stage,skill,category,skill_type,classification,uses,effective_direct_damage,median_effective_damage_per_use,damage_per_mana,effective_direct_damage_per_combat_turn,mean_mana_cost_per_use,healing,effect_applications,battle_contexts,battles_per_context,independent_random_trials,confidence
+H.13,Golpe calibrado,physical,physical,potencialmente forte,17,122,7.0,1.7941176470588236,1.0427350427350428,4.0,0,0,5,1,0,baixa; evidência exploratória sintética e determinística
+H.13,Orbe arcano,magic,arcane,potencialmente forte,14,162,12.0,2.892857142857143,1.9285714285714286,4.0,0,0,5,1,0,baixa; evidência exploratória sintética e determinística
+H.13,Chama controlada,magic,fire,potencialmente forte,14,162,12.0,2.892857142857143,1.9285714285714286,4.0,0,0,5,1,0,baixa; evidência exploratória sintética e determinística
+H.13,Veneno gradual,special,poison,potencialmente forte,17,74,4.0,1.088235294117647,0.6491228070175439,4.0,0,10,5,1,0,baixa; evidência exploratória sintética e determinística
+H.13,Restauração sintética,healing,heal,dados insuficientes,3,0,,,,4.0,60,0,1,1,0,baixa; evidência exploratória sintética e determinística
+H.13,Técnica de mana restrita,magic,arcane,dados insuficientes,0,0,,,0.0,,0,0,5,1,0,baixa; evidência exploratória sintética e determinística

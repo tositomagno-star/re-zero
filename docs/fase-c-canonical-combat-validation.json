@@ -1,0 +1,83 @@
+{
+  "phase": "C",
+  "title": "Validação do balanceamento canônico",
+  "status": "blocked_before_database_access",
+  "environment": {
+    "application_environment": "development",
+    "configured_database_target": "127.0.0.1:5432/cronicas_do_reino_dev",
+    "canonical_environment_identified": false,
+    "database_accessed": false,
+    "database_identity_verified": false,
+    "database_privileges_verified": false,
+    "recoverable_backup_verified": false,
+    "installed_alembic_revision": null,
+    "code_alembic_head": "d129a4c7e601",
+    "assets_path": "backend/uploads/assets",
+    "assets_path_exists": false
+  },
+  "administration": {
+    "admin_existence_checked": false,
+    "admin_access_confirmed": false,
+    "bootstrap_available_in_code": true,
+    "bootstrap_operationally_compatible_with_current_environment": false,
+    "bootstrap_executed": false
+  },
+  "inventory": {
+    "status": "not_obtained",
+    "records_analyzed": null,
+    "categories": [
+      {"name": "characters_and_archetypes", "count": null, "status": "not_obtained"},
+      {"name": "levels_attributes_hp_mana", "count": null, "status": "not_obtained"},
+      {"name": "common_enemies_and_bosses", "count": null, "status": "not_obtained"},
+      {"name": "weapons_and_equipment", "count": null, "status": "not_obtained"},
+      {"name": "physical_magic_and_special_skills", "count": null, "status": "not_obtained"},
+      {"name": "combat_values_resistances_weaknesses_effects", "count": null, "status": "not_obtained"},
+      {"name": "animations_and_visual_associations", "count": null, "status": "not_obtained"},
+      {"name": "relationships_duplicates_incomplete_records", "count": null, "status": "not_verified"}
+    ]
+  },
+  "experiments": {
+    "canonical_battles": 0,
+    "snapshots_created": 0,
+    "seeds": [],
+    "canonical_balance_classification": "insufficient_data",
+    "canonical_adjustments": []
+  },
+  "synthetic_sources": [
+    "docs/etapa-h11-combat-simulator.md",
+    "docs/etapa-h12-combat-balance-analysis.md",
+    "docs/etapa-h13-skill-balance-analysis.md",
+    "docs/etapa-h14-ai-strategy-comparison.md",
+    "docs/etapa-h15-combat-balance-report.md",
+    "docs/etapa-h16-final-combat-balance-validation.md"
+  ],
+  "site": {
+    "backend": {"url": "http://127.0.0.1:8000", "health_status": 200, "database_checked": false},
+    "frontend": {"url": "http://localhost:8080/", "http_status": 200, "opened_in_browser": true}
+  },
+  "validation": {
+    "backend_non_postgresql_tests": {"status": "passed", "passed": 236, "skipped": 1, "deselected": 12},
+    "frontend_tests": {"status": "passed", "passed": 58},
+    "typescript": {"status": "passed", "command": "tsc --noEmit"},
+    "eslint": {"status": "passed_with_warnings", "errors": 0, "warnings": 7},
+    "frontend_build": {"status": "passed"},
+    "python_compileall": {"status": "passed"},
+    "pip_check": {"status": "passed"},
+    "alembic_heads": {"status": "passed_read_only", "head": "d129a4c7e601"},
+    "postgresql_tests": {"status": "not_executed"}
+  },
+  "integrity": {
+    "postgresql_queries": 0,
+    "postgresql_tests": 0,
+    "migrations_applied": 0,
+    "persistent_data_modified": false,
+    "permissions_modified": false,
+    "env_modified": false,
+    "credentials_or_personal_data_reported": false
+  },
+  "limitations": [
+    "The configured local development database is not proven to be the canonical catalog.",
+    "Database identity, current migration revision, effective privileges, backup, and admin existence were not checked.",
+    "The current Windows development environment is incompatible with the documented Linux production bootstrap procedure."
+  ]
+}

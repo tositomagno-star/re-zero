@@ -1,0 +1,22 @@
+category,count,status,notes
+characters_and_archetypes,,not_obtained,Canonical target not identified; no database query
+levels_attributes_hp_mana,,not_obtained,Canonical target not identified; no database query
+common_enemies_and_bosses,,not_obtained,Canonical target not identified; no database query
+weapons_and_equipment,,not_obtained,Canonical target not identified; no database query
+physical_magic_and_special_skills,,not_obtained,Canonical target not identified; no database query
+combat_values_resistances_weaknesses_effects,,not_obtained,Canonical target not identified; no database query
+animations_and_visual_associations,,not_obtained,Canonical target not identified; no database query
+relationships_duplicates_incomplete_records,,not_verified,Canonical target not identified; no database query
+canonical_snapshots,0,not_executed,No snapshots created
+canonical_battles,0,not_executed,No canonical simulations executed
+postgresql_queries,0,not_executed,No PostgreSQL connection or query
+migrations_applied,0,not_executed,No migration applied
+backend_non_postgresql_tests,"236 passed; 1 skipped; 12 deselected",passed,Executed from a temporary working directory without database URLs
+frontend_tests,58,passed,Vitest
+typescript,,passed,tsc --noEmit
+frontend_build,,passed,Vite production build
+eslint,"0 errors; 7 warnings",passed_with_warnings,Seven warnings
+python_compileall,,passed,Backend app migrations and tests
+pip_check,,passed,No broken requirements
+alembic_heads,d129a4c7e601,passed_read_only,Code head only; installed database revision unknown
+postgresql_tests,0,not_executed,Excluded to prevent access to an unidentified database

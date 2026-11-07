@@ -1,0 +1,27 @@
+skill,category,skill_type,context_id,context,battle_count,uses,raw_damage,effective_direct_damage,mean_effective_damage_per_use,median_effective_damage_per_use,mean_mana_cost_per_use,mana_cost,damage_per_mana,healing_per_mana,effective_direct_damage_per_combat_turn,healing,effect_applications,direct_target_count,hit_rate,failed_use_count,control_rounds,skill_rounds,round_reduction_fraction,paired_benefit,control_party_survival_rate,skill_party_survival_rate,wounded_ally_hp_final,control_result,skill_result,classification
+Golpe calibrado,physical,physical,neutral,Alvo neutro,1,5,35,35,7.0,7.0,4.0,20,1.75,,1.1666666666666667,0,0,1,,,40,30,0.25,True,1.0,1.0,,turn_limit,victory,potencialmente forte
+Golpe calibrado,physical,physical,resistant,Resistência ao tipo da habilidade,1,5,15,15,3.0,3.0,4.0,20,0.75,,0.375,0,0,1,,,40,40,0.0,True,1.0,1.0,,turn_limit,turn_limit,potencialmente forte
+Golpe calibrado,physical,physical,weak,Fraqueza ao tipo da habilidade,1,5,70,60,12.0,14.0,4.0,20,3.0,,12.0,0,0,1,,,30,5,0.8333333333333334,True,1.0,1.0,,victory,victory,potencialmente forte
+Golpe calibrado,physical,physical,high-defense,Defesa e resistência mágica elevadas,1,0,0,0,,,,0,,,0.0,0,0,0,,,40,40,0.0,False,1.0,1.0,,turn_limit,turn_limit,potencialmente forte
+Golpe calibrado,physical,physical,low-hp,Alvo com pouco HP e risco de overkill,1,2,14,12,6.0,6.0,4.0,8,1.5,,6.0,0,0,1,,,12,2,0.8333333333333334,True,1.0,1.0,,victory,victory,potencialmente forte
+Orbe arcano,magic,arcane,neutral,Alvo neutro,1,5,60,60,12.0,12.0,4.0,20,3.0,,12.0,0,0,1,,,40,5,0.875,True,1.0,1.0,,turn_limit,victory,potencialmente forte
+Orbe arcano,magic,arcane,resistant,Resistência ao tipo da habilidade,1,5,30,30,6.0,6.0,4.0,20,1.5,,0.8571428571428571,0,0,1,,,40,35,0.125,True,1.0,1.0,,turn_limit,victory,potencialmente forte
+Orbe arcano,magic,arcane,weak,Fraqueza ao tipo da habilidade,1,3,72,60,20.0,24.0,4.0,12,5.0,,20.0,0,0,1,,,40,3,0.925,True,1.0,1.0,,turn_limit,victory,potencialmente forte
+Orbe arcano,magic,arcane,high-defense,Defesa e resistência mágica elevadas,1,0,0,0,,,,0,,,0.0,0,0,0,,,40,40,0.0,False,1.0,1.0,,turn_limit,turn_limit,potencialmente forte
+Orbe arcano,magic,arcane,low-hp,Alvo com pouco HP e risco de overkill,1,1,12,12,12.0,12.0,4.0,4,3.0,,12.0,0,0,1,,,12,1,0.9166666666666666,True,1.0,1.0,,victory,victory,potencialmente forte
+Chama controlada,magic,fire,neutral,Alvo neutro,1,5,60,60,12.0,12.0,4.0,20,3.0,,12.0,0,0,1,,,40,5,0.875,True,1.0,1.0,,turn_limit,victory,potencialmente forte
+Chama controlada,magic,fire,resistant,Resistência ao tipo da habilidade,1,5,30,30,6.0,6.0,4.0,20,1.5,,0.8571428571428571,0,0,1,,,40,35,0.125,True,1.0,1.0,,turn_limit,victory,potencialmente forte
+Chama controlada,magic,fire,weak,Fraqueza ao tipo da habilidade,1,3,72,60,20.0,24.0,4.0,12,5.0,,20.0,0,0,1,,,40,3,0.925,True,1.0,1.0,,turn_limit,victory,potencialmente forte
+Chama controlada,magic,fire,high-defense,Defesa e resistência mágica elevadas,1,0,0,0,,,,0,,,0.0,0,0,0,,,40,40,0.0,False,1.0,1.0,,turn_limit,turn_limit,potencialmente forte
+Chama controlada,magic,fire,low-hp,Alvo com pouco HP e risco de overkill,1,1,12,12,12.0,12.0,4.0,4,3.0,,12.0,0,0,1,,,12,1,0.9166666666666666,True,1.0,1.0,,victory,victory,potencialmente forte
+Veneno gradual,special,poison,neutral,Alvo neutro,1,5,20,20,4.0,4.0,4.0,20,1.0,,0.7407407407407407,0,3,1,,,40,27,0.325,True,1.0,1.0,,turn_limit,victory,potencialmente forte
+Veneno gradual,special,poison,resistant,Resistência ao tipo da habilidade,1,5,10,10,2.0,2.0,4.0,20,0.5,,0.25,0,3,1,,,40,40,0.0,True,1.0,1.0,,turn_limit,turn_limit,potencialmente forte
+Veneno gradual,special,poison,weak,Fraqueza ao tipo da habilidade,1,5,40,36,7.2,8.0,4.0,20,1.8,,7.2,0,3,1,,,40,5,0.875,True,1.0,1.0,,turn_limit,victory,potencialmente forte
+Veneno gradual,special,poison,high-defense,Defesa e resistência mágica elevadas,1,0,0,0,,,,0,,,0.0,0,0,0,,,40,40,0.0,False,1.0,1.0,,turn_limit,turn_limit,potencialmente forte
+Veneno gradual,special,poison,low-hp,Alvo com pouco HP e risco de overkill,1,2,8,8,4.0,4.0,4.0,8,1.0,,4.0,0,1,1,,,12,2,0.8333333333333334,True,1.0,1.0,,victory,victory,potencialmente forte
+Técnica de mana restrita,magic,arcane,neutral,Alvo neutro,1,0,0,0,,,,0,,,0.0,0,0,0,,,40,40,0.0,False,1.0,1.0,,turn_limit,turn_limit,dados insuficientes
+Técnica de mana restrita,magic,arcane,resistant,Resistência ao tipo da habilidade,1,0,0,0,,,,0,,,0.0,0,0,0,,,40,40,0.0,False,1.0,1.0,,turn_limit,turn_limit,dados insuficientes
+Técnica de mana restrita,magic,arcane,weak,Fraqueza ao tipo da habilidade,1,0,0,0,,,,0,,,0.0,0,0,0,,,40,40,0.0,False,1.0,1.0,,turn_limit,turn_limit,dados insuficientes
+Técnica de mana restrita,magic,arcane,high-defense,Defesa e resistência mágica elevadas,1,0,0,0,,,,0,,,0.0,0,0,0,,,40,40,0.0,False,1.0,1.0,,turn_limit,turn_limit,dados insuficientes
+Técnica de mana restrita,magic,arcane,low-hp,Alvo com pouco HP e risco de overkill,1,0,0,0,,,,0,,,0.0,0,0,0,,,12,12,0.0,False,1.0,1.0,,victory,victory,dados insuficientes
+Restauração sintética,healing,heal,wounded-ally,Aliado começa com 25% de HP,1,3,0,0,0.0,0.0,4.0,12,,5.0,0.0,60,0,2,,,18,14,0.2222222222222222,True,0.0,1.0,30,defeat,turn_limit,dados insuficientes
